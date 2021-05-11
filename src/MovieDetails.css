@@ -39,22 +39,29 @@
 .topInfo h3 {
     color: #5E42D6;
     text-transform: uppercase;
+    font-size: 48px;
     padding: 0;
     margin: 0;
-}
-
-.movieRating {
-    color: #9D80DE;
 }
 
 .ratingGenre {
     color: #B0B0B0;
     font-weight: bold;
-    font-size: 12px;
+    font-size: 18px;
     display: flex;
     flex-direction: row;
     justify-content: space-around;
-    width: 180px;
+    width: max-content;
+}
+
+.movieRating {
+    color: #9D80DE;
+    margin: 2px;
+    font-size: 18px;
+}
+
+.movieGenre {
+    margin-left: 2px;
 }
 
 .starRating {
@@ -64,7 +71,7 @@
 
 .moviePlot {
     padding: 1% 0;
-    font-size: 18px;
+    font-size: 20px;
 }
 
 .bottomInfo {
