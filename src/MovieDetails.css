@@ -100,3 +100,63 @@
     transform: translateY(3px);
     box-shadow: none;
 }
+
+/* Mobile Version */
+
+@media only screen and (max-width: 768px) {
+    .closeWindow {
+        display: none;
+    }
+
+    .movieDetailsContainer {
+        flex-direction: column;
+        justify-content: space-between;
+        background-color: #FFF4FF; 
+        height: max-content;
+    }
+
+    .imgBox {
+        background-color: #FFF4FF; 
+        height: 100%;
+    }
+
+    .moviePoster {
+        mask-image: linear-gradient(to bottom, #FFF4FF 20%, transparent 60%);
+        width: 100vw;
+        height: 100%;
+        object-fit: cover;
+        position: absolute;
+        top: 0;
+        left: 0;
+    }
+
+    .infoBox {
+        z-index: 1000;
+        width: 90%;
+        height: 50%;
+        position: absolute;
+        bottom: 0;
+    }
+
+    .moviePlot {
+        font-size: large;
+    }
+
+    .directorName {
+        font-size: small;
+        padding: 1% 0;
+    }
+
+    .actorsList {
+        font-size: small;
+    }
+
+    .bottomInfo {
+        padding: 5% 0;
+    }
+    
+    .buyButton {
+        font-size: small;
+    }
+
+  }

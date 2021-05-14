@@ -5,7 +5,7 @@ const MovieDetails = () => {
         <div className="movieDetailsContainer">
             <div className="closeWindow">✕</div>
             <section className="imgBox">
-                <img src="https://upload.wikimedia.org/wikipedia/en/thumb/1/11/MisfitsTeaserPoster.jpg/220px-MisfitsTeaserPoster.jpg" className="moviePoster" />
+                <img src="https://upload.wikimedia.org/wikipedia/en/thumb/1/11/MisfitsTeaserPoster.jpg/220px-MisfitsTeaserPoster.jpg" className="moviePoster" alt="" />
             </section>
             <section className="infoBox">
                 <section className="topInfo">
