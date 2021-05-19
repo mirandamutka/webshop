@@ -1,5 +1,5 @@
 import './MovieDetails.css';
-import { useLocation } from 'react-router-dom';
+import { useLocation, useHistory } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 
 const MovieDetails = (props) => {
@@ -45,12 +45,18 @@ const MovieDetails = (props) => {
         }
     }
 
+    let history = useHistory();
+
+    const handleCloseWindow = () => {
+        history.push('/')
+    }
+
     return (
         <div className="movieDetailsContainer">
             {movieName 
             ? (
             <>
-                <div className="closeWindow">✕</div>
+                <div className="closeWindow" onClick={() => handleCloseWindow()}>✕</div>
                 <section className="imgBox">
                     <img src={moviePoster} className="moviePoster" alt="" />
                 </section>
