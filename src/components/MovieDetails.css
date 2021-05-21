@@ -1,0 +1,169 @@
+.movieDetailsContainer {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    background-color: #FFF4FF; /* All hexkod för färger kan flyttas till separat komponent för att återanvändas */
+    height: 100vh;
+    width: 100%;
+}
+
+.closeWindow {
+    position: absolute;
+    top: 0;
+    left: 0;
+    padding: 5%;
+    font-size: 50px;
+    font-weight: bold;
+    color: #9E8EE6;
+}
+
+.closeWindow:active {
+    opacity: 50%;
+}
+
+.moviePoster {
+    height: 50vh;
+}
+
+.infoBox {
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+    justify-content: space-between;
+    height: 50vh;
+    width: 50vw;
+    padding-left: 1%;
+}
+
+.topInfo h3 {
+    color: #5E42D6;
+    text-transform: uppercase;
+    font-size: 48px;
+    padding: 0;
+    margin: 0;
+}
+
+.ratingGenre {
+    color: #B0B0B0;
+    font-weight: bold;
+    font-size: 18px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    width: max-content;
+}
+
+.movieRating {
+    color: #9D80DE;
+    margin: 2px;
+    font-size: 18px;
+}
+
+.movieGenre {
+    margin-left: 2px;
+    flex-wrap: wrap;
+}
+
+.starRating {
+    color: #9E8EE6;
+    font-size: 20px;
+}
+
+.moviePlot {
+    padding: 1% 0;
+    font-size: 20px;
+}
+
+.bottomInfo {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.languageCountry {
+    color: #575757;
+}
+
+.buyButton {
+    background-color: #5E42D6;
+    color: white;
+    font-size: 18px;
+    font-weight: 600;
+    border: none;
+    border-radius: 25px;
+    padding: 2% 4%;
+    width: auto;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+.buyButton:active {
+    transform: translateY(3px);
+    box-shadow: none;
+}
+
+/* Mobile Version */
+
+@media only screen and (max-width: 768px) {
+    .closeWindow {
+        display: none;
+    }
+
+    .movieDetailsContainer {
+        flex-direction: column;
+        justify-content: space-between;
+        background-color: #FFF4FF; 
+        height: max-content;
+        width: 100%;
+    }
+
+    .imgBox {
+        background-color: #FFF4FF; 
+        height: 100%;
+    }
+
+    .moviePoster {
+        mask-image: linear-gradient(to bottom, #FFF4FF 20%, transparent 60%);
+        width: 100vw;
+        height: 100%;
+        object-fit: cover;
+        position: absolute;
+        top: 0;
+        left: 0;
+    }
+
+    .infoBox {
+        z-index: 1000;
+        width: 90%;
+        height: 50%;
+        position: absolute;
+        bottom: 0;
+    }
+
+    .movieGenre {
+        max-width: 250px;
+        font-size: 14px;
+    }
+
+    .moviePlot {
+        font-size: large;
+    }
+
+    .directorName {
+        font-size: small;
+        padding: 1% 0;
+    }
+
+    .actorsList {
+        font-size: small;
+    }
+
+    .bottomInfo {
+        padding: 5% 0;
+    }
+    
+    .buyButton {
+        font-size: small;
+    }
+
+  }
