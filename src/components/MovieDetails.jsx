@@ -2,6 +2,9 @@ import './MovieDetails.css';
 import { useLocation, useHistory } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 
+import { useDispatch, useSelector } from 'react-redux';
+import { actions } from '../features/apiCall';
+
 const MovieDetails = (props) => {
 
     const location = useLocation();
@@ -16,11 +19,15 @@ const MovieDetails = (props) => {
     const [movieActors, setMovieActors] = useState();
     const [movieLanguage, setMovieLanguage] = useState();
     const [movieCountry, setMovieCountry] = useState();
-    
 
     useEffect(() => {
         setMovieID(location.state.detail.imdbID);
      }, [location]);
+
+     const dispatch = useDispatch();
+     const url = useSelector(state => state.apiCall.url);
+     console.log('url: ', url);
+     dispatch(actions.getDataFromId(movieID));
 
     useEffect(() => {
         getSelectedMovie();
@@ -28,19 +35,23 @@ const MovieDetails = (props) => {
 
     const getSelectedMovie = async () => {
         if (movieID) {
-            const movieIDURL = `http://www.omdbapi.com/?i=${movieID}&apikey=b7ed0243`;
-            let response = await fetch(movieIDURL);
-            let data = await response.json();
-            if (data != null) {
-                setMovieName(data.Title);
-                setMoviePoster(data.Poster);
-                setMovieRating(data.Rated);
-                setMovieGenre(data.Genre);
-                setMoviePlot(data.Plot);
-                setMovieDirector(data.Director);
-                setMovieActors(data.Actors);
-                setMovieLanguage(data.Language);
-                setMovieCountry(data.Country);
+            try {
+                let response = await fetch(url);
+                let data = await response.json();	
+                console.log('data: ', data)	
+                if (data != null) {
+                    setMovieName(data.Title);
+                    setMoviePoster(data.Poster);
+                    setMovieRating(data.Rated);
+                    setMovieGenre(data.Genre);
+                    setMoviePlot(data.Plot);
+                    setMovieDirector(data.Director);
+                    setMovieActors(data.Actors);
+                    setMovieLanguage(data.Language);
+                    setMovieCountry(data.Country);
+                }	
+            } catch {
+                console.log('Failed to get data');
             }
         }
     }
@@ -53,10 +64,10 @@ const MovieDetails = (props) => {
 
     return (
         <div className="movieDetailsContainer">
+            <div className="closeWindow" onClick={() => handleCloseWindow()}>✕</div>
             {movieName 
             ? (
             <>
-                <div className="closeWindow" onClick={() => handleCloseWindow()}>✕</div>
                 <section className="imgBox">
                     <img src={moviePoster} className="moviePoster" alt="" />
                 </section>

@@ -7,20 +7,31 @@ import SearchBox from './components/SearchBox';
 import AddToCart from './components/AddToCart';
 import RemoveFromCart from './components/RemoveFromCart';
 
+import { useDispatch, useSelector } from 'react-redux';
+import { actions } from './features/apiCall';
+
 const App = () => {
 	const [movies, setMovies] = useState([]);
 	const [cart, setCart] = useState([]);
 	const [searchValue, setSearchValue] = useState('');
 
-	const getMovieRequest = async (searchValue) => {
-		const url = `http://www.omdbapi.com/?s=${searchValue}&apikey=b7ed0243`;
+	const dispatch = useDispatch();
+	const url = useSelector(state => state.apiCall.url);
+	console.log('url: ', url)
+	dispatch(actions.getDataFromSearch(searchValue));
 
-		const response = await fetch(url);
-		const responseJson = await response.json();
-
-		if (responseJson.Search) {
-			setMovies(responseJson.Search);
+	const getMovieRequest = async () => {
+		try {
+			let response = await fetch(url);
+			let json = await response.json();	
+			console.log('json: ', json)		
+			if (json.Search) {
+				setMovies(json.Search);
+			}
+		} catch {
+			console.log('Failed to get data');
 		}
+		
 	};
 
 	useEffect(() => {
