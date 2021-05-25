@@ -1,4 +1,4 @@
-import { createAction, createReducer } from "@reduxjs/toolkit";
+import { createAction, createReducer } from '@reduxjs/toolkit';
 
 const getDataFromSearch = createAction('get data from search');
 const getDataFromId = createAction('get data from id');

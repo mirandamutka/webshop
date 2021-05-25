@@ -1,9 +1,16 @@
 import React from 'react';
 import { useHistory } from 'react-router-dom';
+import AddToCart from './AddToCart';
+
+import { useDispatch, useSelector } from 'react-redux';
+import { actions as cartAction } from '../features/shoppingCart';
 
 const MovieList = (props) => {
-	const CartItem = props.cartItem;
+	
 	let history = useHistory();
+	const dispatch = useDispatch();
+	const addToCart = (movie) => dispatch(cartAction.addToCart(movie))
+
 	return (
 		<>
 			{props.movies.map((movie, index) => (
@@ -12,8 +19,8 @@ const MovieList = (props) => {
 						pathname: '/MovieDetails',
 						state: { detail: movie }
 					})}></img>
-					<div onClick={() => props.handleBuyClick(movie)}>
-						<CartItem />
+					<div onClick={() => addToCart(movie)}>
+						<AddToCart />
 					</div>
 				</div>
 			))}

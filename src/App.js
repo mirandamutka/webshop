@@ -8,7 +8,9 @@ import AddToCart from './components/AddToCart';
 import RemoveFromCart from './components/RemoveFromCart';
 
 import { useDispatch, useSelector } from 'react-redux';
-import { actions } from './features/apiCall';
+import { actions as apiAction } from './features/apiCall';
+import { actions as cartAction } from './features/shoppingCart';
+import ShoppingCart from './components/ShoppingCart';
 
 const App = () => {
 	const [movies, setMovies] = useState([]);
@@ -18,7 +20,7 @@ const App = () => {
 	const dispatch = useDispatch();
 	const url = useSelector(state => state.apiCall.url);
 	console.log('url: ', url)
-	dispatch(actions.getDataFromSearch(searchValue));
+	dispatch(apiAction.getDataFromSearch(searchValue));
 
 	const getMovieRequest = async () => {
 		try {
@@ -38,7 +40,9 @@ const App = () => {
 		getMovieRequest(searchValue);
 	}, [searchValue]);
 
-	useEffect(() => {
+	// const addToCart = dispatch(cartAction.addToCart(movie))
+
+	/* useEffect(() => {
 		const movieInCart = JSON.parse(
 			localStorage.getItem('react-movie-app-cart')
 		);
@@ -66,6 +70,7 @@ const App = () => {
 		setCart(newCart);
 		saveToLocalStorage(newCart);
 	};
+	*/
 
 	return (
 		<div>
@@ -76,19 +81,15 @@ const App = () => {
 			<div className='row'>
 				<MovieList
 					movies={movies}
-					handleBuyClick={addToCart}
-					cartItem={AddToCart}
+					// handleBuyClick={addToCart}
+					// cartItem={AddToCart}
 				/>
 			</div>
 			<div>
 				<MovieListHeading heading='Shopping Cart' />
 			</div>
 			<div className='row'>
-				<MovieList
-					movies={cart}
-					handleBuyClick={removeFromCart}
-					cartItem={RemoveFromCart}
-				/>
+				<ShoppingCart />
 			</div>
 		</div>
 	);

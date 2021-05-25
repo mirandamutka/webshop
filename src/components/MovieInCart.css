@@ -1,0 +1,8 @@
+.cartItemContainer {
+    display: flex;
+    flex-direction: row;
+}
+
+.cartItemPoster {
+    height: 100px;
+}
