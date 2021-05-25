@@ -4,18 +4,23 @@
     display: flex;
     flex-direction: column;
     margin: 10px;
+    align-items: center;
+}
+
+.list-item img {
+    height: 250px;
 }
 
 .list-item .title {
     font-family: 'Oswald', sans-serif;
     margin-top: 5px;
-    margin-bottom: 5px;
+    margin-bottom: 0px;
 }
 
 .list-item .genre {
     font-family: 'Oswald', sans-serif;
-    margin-top: 5px;
-    margin-bottom: 5px;
+    margin-top: 0px;
+    margin-bottom: 0px;
 }
 
 .list-item .director {
@@ -29,7 +34,7 @@
     flex-direction: row;
     align-items: center;
     justify-content: center;
-    margin-top: 5px;
+    margin-top: 0px;
     margin-bottom: 5px;
 }
 
