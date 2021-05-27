@@ -4,18 +4,17 @@ const getDataFromSearch = createAction('get data from search');
 const getDataFromId = createAction('get data from id');
 
 const actions = { getDataFromSearch, getDataFromId};
+const api_key = '7ab73473a05278044ef701c06449633a'
 
-const initialState = {
-    url: ''
-}
+const initialState = {}
 
 const reducer = createReducer(initialState, {
     [getDataFromSearch] : (state, action) => ({
-        url:  `http://www.omdbapi.com/?s=${action.payload}&apikey=b7ed0243` 
+        url:  `https://api.themoviedb.org/3/search/movie?api_key=${api_key}&query=${action.payload}` 
     })
     ,
     [getDataFromId] : (state, action) => ({
-        url: `http://www.omdbapi.com/?i=${action.payload}&apikey=b7ed0243`
+        url: `https://api.themoviedb.org/3/movie/${action.payload}?api_key=${api_key}`
     })
 })
 

@@ -5,17 +5,25 @@ const removeFromCart = createAction('Remove movie from cart');
 
 const actions = { addToCart, removeFromCart };
 
-const initialState = [];
+const initialState = {
+    product: []
+}
 
 const reducer = createReducer(initialState, {
     [addToCart] : (state, action) => {
-            return [
-                ...state,
-                { product: {name: action.payload.Title, poster: action.payload.Poster} }
-            ];
+        return {
+            ...state,
+            product: [...state.product, action.payload]
+        };
     },
     [removeFromCart] : (state, action) => {
-        // filter() ?
+        const id = action.payload.id      
+        console.log('id: ', id)
+      return {
+          ...state,
+          product: state.product.filter((product) => product.id !== id)
+        };
+        
     }
 })
 

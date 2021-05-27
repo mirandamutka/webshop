@@ -18,17 +18,20 @@ const App = () => {
 	const [searchValue, setSearchValue] = useState('');
 
 	const dispatch = useDispatch();
-	const url = useSelector(state => state.apiCall.url);
-	console.log('url: ', url)
+		
 	dispatch(apiAction.getDataFromSearch(searchValue));
+	let url = useSelector(state => state.apiCall.url);
+	let shoppingCart = useSelector(state => state.shoppingCart);  
+	console.log('shoppingCart: ', shoppingCart)
+	console.log('url: ', url);
 
 	const getMovieRequest = async () => {
 		try {
 			let response = await fetch(url);
 			let json = await response.json();	
 			console.log('json: ', json)		
-			if (json.Search) {
-				setMovies(json.Search);
+			if (json.results) {
+				setMovies(json.results);
 			}
 		} catch {
 			console.log('Failed to get data');

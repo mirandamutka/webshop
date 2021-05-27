@@ -7,20 +7,20 @@ import MovieListHeading from './MovieListHeading';
 
 const ShoppingCart = () => {
 
-    let shoppingCart = useSelector(state => state.shoppingCart);    
+    let shoppingCart = useSelector(state => state.shoppingCart.product);    
     console.log('newState: ', shoppingCart)
 
     const dispatch = useDispatch();
-	const removeFromCart = (movie) => dispatch(cartAction.removeFromCart(movie.Title))
+	const removeFromCart = (movie) => dispatch(cartAction.removeFromCart(movie))
     
 
-    if (shoppingCart) {
+    if (shoppingCart != []) {
     const shoppingList = shoppingCart.map((movie, index) => (
             <div key={index}
                 style={{display: 'flex', flexDirection: 'row', justifyContent: 'space-between'}}>
                 <MovieInCart
-                    title={movie.product ? movie.product.name : ''}
-                    poster={movie.product ? movie.product.poster : ''}
+                    title={movie ? movie.title : ''}
+                    poster={movie ? movie.poster_path : ''}
                 />
                 <div onClick={() => removeFromCart(movie)}>
                     <RemoveFromCart />
