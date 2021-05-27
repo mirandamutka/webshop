@@ -3,18 +3,19 @@ import { useDispatch, useSelector } from 'react-redux';
 import { actions as cartAction } from '../features/shoppingCart';
 import MovieInCart from './MovieInCart';
 import RemoveFromCart from './RemoveFromCart';
+import MovieListHeading from './MovieListHeading';
 
 const ShoppingCart = () => {
 
-    const newState = useSelector(state => state.shoppingCart);    
-    console.log('newState: ', newState)
+    let shoppingCart = useSelector(state => state.shoppingCart);    
+    console.log('newState: ', shoppingCart)
 
     const dispatch = useDispatch();
 	const removeFromCart = (movie) => dispatch(cartAction.removeFromCart(movie.Title))
     
 
-    if (newState) {
-    const shoppingList = newState.map((movie, index) => (
+    if (shoppingCart) {
+    const shoppingList = shoppingCart.map((movie, index) => (
             <div key={index}
                 style={{display: 'flex', flexDirection: 'row', justifyContent: 'space-between'}}>
                 <MovieInCart
@@ -28,6 +29,7 @@ const ShoppingCart = () => {
         ))
         return (
             <div>
+                <MovieListHeading heading='Shopping Cart' />
                 {shoppingList}
             </div>
         )

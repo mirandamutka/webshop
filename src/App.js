@@ -85,9 +85,6 @@ const App = () => {
 					// cartItem={AddToCart}
 				/>
 			</div>
-			<div>
-				<MovieListHeading heading='Shopping Cart' />
-			</div>
 			<div className='row'>
 				<ShoppingCart />
 			</div>
