@@ -1,9 +1,11 @@
 import './MovieDetails.css';
+import BuyButton from './BuyButton';
 import { useLocation, useHistory } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 
 import { useDispatch, useSelector } from 'react-redux';
-import { actions } from '../features/apiCall';
+import { actions as apiAction } from '../features/apiCall';
+import { actions as cartAction } from '../features/shoppingCart';
 
 const MovieDetails = (props) => {
 
@@ -27,7 +29,8 @@ const MovieDetails = (props) => {
      const dispatch = useDispatch();
      
     let url = useSelector(state => state.apiCall.url);
-    dispatch(actions.getDataFromId(movieID));
+    dispatch(apiAction.getDataFromId(movieID));
+    const addToCart = (movie) => dispatch(cartAction.addToCart(movie))
 
      useEffect(() => {
         getSelectedMovie();
@@ -113,8 +116,7 @@ const MovieDetails = (props) => {
                             )
                             }</div>
                         </section>
-                        {/* Skapa en separat knapp komponent som kan återanvändas */}
-                        <button className="buyButton">Buy 10$</button>
+                        <BuyButton text={"Buy 10$"} handleOnClick={() => addToCart(location.state.detail)} />
                     </section>
                 </section>
             </>

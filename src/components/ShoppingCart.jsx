@@ -1,4 +1,6 @@
-import { useEffect } from 'react';
+import './ShoppingCart.css';
+import BuyButton from './BuyButton';
+
 import { useDispatch, useSelector } from 'react-redux';
 import { actions as cartAction } from '../features/shoppingCart';
 import MovieInCart from './MovieInCart';
@@ -14,15 +16,14 @@ const ShoppingCart = () => {
 	const removeFromCart = (movie) => dispatch(cartAction.removeFromCart(movie))
     
 
-    if (shoppingCart != []) {
+    if (shoppingCart !== []) {
     const shoppingList = shoppingCart.map((movie, index) => (
-            <div key={index}
-                style={{display: 'flex', flexDirection: 'row', justifyContent: 'space-between'}}>
+            <div key={index} className="movieContainer">
                 <MovieInCart
                     title={movie ? movie.title : ''}
                     poster={movie ? movie.poster_path : ''}
                 />
-                <div onClick={() => removeFromCart(movie)}>
+                <div onClick={() => removeFromCart(movie)} className="removeCart">
                     <RemoveFromCart />
                 </div>
             </div>
@@ -31,6 +32,13 @@ const ShoppingCart = () => {
             <div>
                 <MovieListHeading heading='Shopping Cart' />
                 {shoppingList}
+                {shoppingList !== ""
+                ?   <div className="buyButtonShoppingCart">
+                        <BuyButton text={"Buy"} />
+                    </div>
+                : ""
+                }
+                
             </div>
         )
     } else {

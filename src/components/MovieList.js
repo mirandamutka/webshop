@@ -2,7 +2,7 @@ import React from 'react';
 import { useHistory } from 'react-router-dom';
 import AddToCart from './AddToCart';
 
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { actions as cartAction } from '../features/shoppingCart';
 
 const MovieList = (props) => {

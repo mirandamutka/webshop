@@ -4,17 +4,13 @@ import './App.css';
 import MovieList from './components/MovieList';
 import MovieListHeading from './components/MovieListHeading';
 import SearchBox from './components/SearchBox';
-import AddToCart from './components/AddToCart';
-import RemoveFromCart from './components/RemoveFromCart';
 
 import { useDispatch, useSelector } from 'react-redux';
 import { actions as apiAction } from './features/apiCall';
-import { actions as cartAction } from './features/shoppingCart';
 import ShoppingCart from './components/ShoppingCart';
 
 const App = () => {
 	const [movies, setMovies] = useState([]);
-	const [cart, setCart] = useState([]);
 	const [searchValue, setSearchValue] = useState('');
 
 	const dispatch = useDispatch();
