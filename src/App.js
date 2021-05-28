@@ -17,8 +17,10 @@ const App = () => {
 
 	const dispatch = useDispatch();
 	const addToCart = (movie) => dispatch(cartAction.addToCart(movie))
-		
-	dispatch(apiAction.getDataFromSearch(searchValue));
+	
+	if (searchValue !== '') {
+		dispatch(apiAction.getDataFromSearch(searchValue));
+	}
 	let url = useSelector(state => state.apiCall.url);
 	let shoppingCart = useSelector(state => state.shoppingCart);  
 	console.log('shoppingCart: ', shoppingCart)
@@ -77,16 +79,22 @@ const App = () => {
 	return (
 		<div>
 			<div>
+				
 				<MovieListHeading heading='Movies' />
 				<SearchBox searchValue={searchValue} setSearchValue={setSearchValue} />
 			</div>
-      <NewReleaseList handleBuyClick={addToCart}/>
-			<div className='row'>
+			<div>
+			{searchValue === '' ? 
+				<NewReleaseList handleBuyClick={addToCart}/>	
+				:	
+				<div className='row'>
 				<MovieList
-					movies={movies}
-					handleBuyClick={addToCart}
-					// cartItem={AddToCart}
+				movies={movies}
+				handleBuyClick={addToCart}
+				// cartItem={AddToCart}
 				/>
+				</div>
+			}
 			</div>
 			<div className='row'>
 				<ShoppingCart />

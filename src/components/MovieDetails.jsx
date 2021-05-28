@@ -29,7 +29,9 @@ const MovieDetails = (props) => {
      const dispatch = useDispatch();
      
     let url = useSelector(state => state.apiCall.url);
-    dispatch(apiAction.getDataFromId(movieID));
+    if (movieID != null) {
+        dispatch(apiAction.getDataFromId(movieID));
+    }
     const addToCart = (movie) => dispatch(cartAction.addToCart(movie))
 
      useEffect(() => {
