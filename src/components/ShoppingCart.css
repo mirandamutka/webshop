@@ -1,0 +1,18 @@
+.movieContainer {
+    display: 'flex'; 
+    flex-direction: 'row';
+    justify-content: 'space-between';
+    position: relative;
+    width: 25vw;
+}
+
+.removeCart {
+    position: absolute;
+    top: 10%;
+    right: 0;
+}
+
+.buyButtonShoppingCart {
+    display: flex;
+    justify-content: center;
+}

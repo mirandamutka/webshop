@@ -16,11 +16,9 @@ const NewReleaseList = (props) => {
     }, []); 
 
 
-    let listContent = movieList.map((movie)=> {
-
-        console.log(movieList)
-        return ([
-            <div className="list-item">
+    let listContent = movieList.map((movie, index)=> {
+        return (
+            <div className="list-item" key={index}>
                 <img className="list-item-image" src={movie.Poster} alt="movie poster"></img>
                 <h3 className="title">{movie.Title}</h3>
                 <p className="genre">{movie.Genre}</p>
@@ -30,18 +28,20 @@ const NewReleaseList = (props) => {
                     <MdShoppingCart className="shopping-cart-button" size="2em" onClick={() => props.handleBuyClick(movie)} />
                 </div>
             </div>
-        ]);   
+        );   
         
     })
 
-    return ([
-        <header className="new-releases-header">
-            <h1 className="new-releases-headline">New releases:</h1>
-        </header>,
-        <main key="list" className="new-releases-conentent">
-            {listContent}
-        </main>
-    ])
+    return (
+        <div>
+            <header className="new-releases-header">
+                <h1 className="new-releases-headline">New releases:</h1>
+            </header>
+            <main className="new-releases-conentent">
+                {listContent}
+            </main>
+        </div>
+    )
 }
 
 export default NewReleaseList;
