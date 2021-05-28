@@ -2,14 +2,11 @@ import React from 'react';
 import { useHistory } from 'react-router-dom';
 import AddToCart from './AddToCart';
 
-import { useDispatch } from 'react-redux';
-import { actions as cartAction } from '../features/shoppingCart';
+
 
 const MovieList = (props) => {
 	
 	let history = useHistory();
-	const dispatch = useDispatch();
-	const addToCart = (movie) => dispatch(cartAction.addToCart(movie))
 	console.log('movies: ', props.movies)
 
 	return (
@@ -27,7 +24,7 @@ const MovieList = (props) => {
 								})}>{movie.title}</p> 
 					}
 						
-					<div onClick={() => addToCart(movie)}>
+					<div onClick={() => props.handleBuyClick(movie)}>
 						<AddToCart />
 					</div>
 				</div>
