@@ -4,9 +4,6 @@ import '../App.css';
 import { useHistory } from 'react-router-dom';
 import { MdShoppingCart } from 'react-icons/md';
 
-import { useDispatch, useSelector } from 'react-redux';
-import { actions as apiAction } from '../features/apiCall';
-
 
 
 const MovieList = (props) => {
@@ -14,7 +11,6 @@ const MovieList = (props) => {
 	const [genres, setGenres] = useState([]);
 	
 	let history = useHistory();
-	console.log('movies: ', props.movies)
 
 	let url = 'https://api.themoviedb.org/3/genre/movie/list?api_key=7ab73473a05278044ef701c06449633a'
 
@@ -22,7 +18,6 @@ const MovieList = (props) => {
 		try {
 			let response = await fetch(url);
 			let json = await response.json();	
-			console.log('json: ', json)		
 			if (json.genres) {
 				setGenres(json.genres);
 			}
@@ -36,19 +31,23 @@ const MovieList = (props) => {
 		findGenre();
 	}, []);
 
-	console.log('genres: ', genres)
 	return (
 		<div className="row">
 			{props.movies.map((movie, index) => (
 				<div key={index} className="list-item">
 					{movie.poster_path ? 
-						<>
 							<img src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`} className="list-item-image" alt='movie' onClick={() => history.push({
 								pathname: '/MovieDetails',
 								state: { detail: movie }
 							})}></img>
+							: 
+							<div className="gray-box" onClick={() => history.push({
+								pathname: '/MovieDetails',
+								state: { detail: movie }
+							})}></div>
+							}
 							<h3 className="title">{movie.title}</h3>
-							<div className="row">
+							<div className="genre-container">
 							{movie.genre_ids.map((genreId, index) => {
   								let genre = genres.find(genre => genre.id === genreId);  
 								if (!genre) return null;
@@ -59,13 +58,6 @@ const MovieList = (props) => {
 								)}
 							)}
 							</div>
-						</>
-						: 
-						<p onClick={() => history.push({
-							pathname: '/MovieDetails',
-							state: { detail: movie }
-						})}>{movie.title}</p> 
-					}
 						
 						<div className="price-wrapper">
 									<p className="price">8$</p>

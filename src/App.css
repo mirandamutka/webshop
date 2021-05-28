@@ -14,3 +14,7 @@ body {
   flex-direction: row;
   flex-wrap: wrap;
 }
+
+.container {
+  width: 100vw;
+}

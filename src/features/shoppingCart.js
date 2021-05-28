@@ -17,8 +17,7 @@ const reducer = createReducer(initialState, {
         };
     },
     [removeFromCart] : (state, action) => {
-        const id = action.payload.id      
-        console.log('id: ', id)
+        const id = action.payload.id
       return {
           ...state,
           product: state.product.filter((product) => product.id !== id)

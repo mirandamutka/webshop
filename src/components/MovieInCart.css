@@ -7,3 +7,8 @@
     height: 100px;
     padding: 0 10px 10px;
 }
+
+.cartItemTitle {
+    max-width: 50%;
+    font-size: small;
+}

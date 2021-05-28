@@ -22,15 +22,11 @@ const App = () => {
 		dispatch(apiAction.getDataFromSearch(searchValue));
 	}
 	let url = useSelector(state => state.apiCall.url);
-	let shoppingCart = useSelector(state => state.shoppingCart);  
-	console.log('shoppingCart: ', shoppingCart)
-	console.log('url: ', url);
 
 	const getMovieRequest = async () => {
 		try {
 			let response = await fetch(url);
 			let json = await response.json();	
-			console.log('json: ', json)		
 			if (json.results) {
 				setMovies(json.results);
 			}
@@ -44,40 +40,8 @@ const App = () => {
 		getMovieRequest(searchValue);
 	}, [searchValue]);
 
-	// const addToCart = dispatch(cartAction.addToCart(movie))
-
-	/* useEffect(() => {
-		const movieInCart = JSON.parse(
-			localStorage.getItem('react-movie-app-cart')
-		);
-
-		if (movieInCart) {
-			setCart(movieInCart);
-		}
-	}, []);
-
-	const saveToLocalStorage = (items) => {
-		localStorage.setItem('react-movie-app-cart', JSON.stringify(items));
-	};
-
-	const addToCart = (movie) => {
-		const newCart = [...cart, movie];
-		setCart(newCart);
-		saveToLocalStorage(newCart);
-	};
-
-	const removeFromCart = (movie) => {
-		const newCart = cart.filter(
-			(cart) => cart.imdbID !== movie.imdbID
-		);
-
-		setCart(newCart);
-		saveToLocalStorage(newCart);
-	};
-	*/
-
 	return (
-		<div>
+		<div className="container">
 			<div>
 				
 				<MovieListHeading heading='Movies' />
