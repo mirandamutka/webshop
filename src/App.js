@@ -6,6 +6,8 @@ import MovieListHeading from './components/MovieListHeading';
 import SearchBox from './components/SearchBox';
 import AddToCart from './components/AddToCart';
 import RemoveFromCart from './components/RemoveFromCart';
+import ListItem from './components/ListItem';
+import NewReleaseList from './components/NewReleaseList';
 
 const App = () => {
 	const [movies, setMovies] = useState([]);
@@ -62,6 +64,7 @@ const App = () => {
 				<MovieListHeading heading='Movies' />
 				<SearchBox searchValue={searchValue} setSearchValue={setSearchValue} />
 			</div>
+      <NewReleaseList handleBuyClick={addToCart}/>
 			<div className='row'>
 				<MovieList
 					movies={movies}

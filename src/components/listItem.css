@@ -1,0 +1,47 @@
+
+
+.list-item {
+    display: flex;
+    flex-direction: column;
+    margin: 10px;
+    align-items: center;
+}
+
+.list-item img {
+    height: 250px;
+}
+
+.list-item .title {
+    font-family: 'Oswald', sans-serif;
+    margin-top: 5px;
+    margin-bottom: 0px;
+}
+
+.list-item .genre {
+    font-family: 'Oswald', sans-serif;
+    margin-top: 0px;
+    margin-bottom: 0px;
+}
+
+.list-item .director {
+    font-family: 'Oswald', sans-serif;
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+.list-item .price-wrapper {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    margin-top: 0px;
+    margin-bottom: 5px;
+}
+
+.list-item .price {
+    margin: 5px;
+}
+
+.list-item .shopping-cart-button {
+    color: #5E42D6;
+}
