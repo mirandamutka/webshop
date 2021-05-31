@@ -1,0 +1,21 @@
+.list-inline-item {
+    display: inline-block;
+    flex-direction: row;
+    flex-wrap: wrap;
+    padding: 0.3em;
+}
+
+.firstLine {
+    display: inline-block;
+    flex-direction: column;
+    flex-wrap: wrap;
+}
+
+
+.card {
+    display: flex;
+    flex-direction: column;
+    width: 13em;
+    margin: 0.5em;
+    padding: 1em;
+}

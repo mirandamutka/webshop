@@ -4,14 +4,28 @@ import './App.css';
 import MovieList from './components/MovieList';
 import MovieListHeading from './components/MovieListHeading';
 import SearchBox from './components/SearchBox';
+import MovieDetails from './components/MovieDetails';
 
 import { useDispatch, useSelector } from 'react-redux';
 import { actions as apiAction } from './features/apiCall';
 import { actions as cartAction } from './features/shoppingCart';
 import ShoppingCart from './components/ShoppingCart';
-import NewReleaseList from './components/NewReleaseList';
+// import NewReleaseList from './components/NewReleaseList';
+
+import { Switch, Route } from "react-router-dom";
+import { NewReleaseList } from "./components/NewReleaseList";
 
 const App = () => {
+	
+	/*
+	 * <main>
+						<Switch>
+							<Route path="/" component={NewReleaseList} exact />
+							<Route path="/movie/:movie" component={MovieDetails} />
+						</Switch>
+					</main>
+	 */
+
 	const [movies, setMovies] = useState([]);
 	const [searchValue, setSearchValue] = useState('');
 
@@ -48,8 +62,10 @@ const App = () => {
 				<SearchBox searchValue={searchValue} setSearchValue={setSearchValue} />
 			</div>
 			<div>
-			{searchValue === '' ? 
-				<NewReleaseList handleBuyClick={addToCart}/>	
+				{searchValue === '' ? 
+
+					<NewReleaseList />	
+			
 				:	
 				<div className='row'>
 				<MovieList
