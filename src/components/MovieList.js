@@ -19,7 +19,7 @@ const MovieList = (props) => {
 			let response = await fetch(url);
 			let json = await response.json();	
 			if (json.genres) {
-				setGenres(json.genres);
+				setGenres(...genres, json.genres);
 			}
 		} catch {
 			console.log('Failed to get data');
@@ -60,7 +60,7 @@ const MovieList = (props) => {
 							</div>
 						
 						<div className="price-wrapper">
-									<p className="price">8$</p>
+									<p className="price">{movie.genre_ids[0] >= 100 ? movie.genre_ids[0].toString().substring(0, 2) : movie.genre_ids[0]}$</p>
 									<MdShoppingCart className="shopping-cart-button" size="2em" onClick={() => props.handleBuyClick(movie)} />
 						</div>
 				</div>

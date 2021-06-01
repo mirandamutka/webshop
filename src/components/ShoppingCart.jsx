@@ -1,52 +1,59 @@
 import './ShoppingCart.css';
+import './listItem.css';
 import BuyButton from './BuyButton';
-import { useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { actions as cartAction } from '../features/shoppingCart';
+import { useSelector } from 'react-redux';
 import MovieInCart from './MovieInCart';
-import RemoveFromCart from './RemoveFromCart';
-import MovieListHeading from './MovieListHeading';
+import { MdShoppingCart } from 'react-icons/md';
 
 
-const ShoppingCart = () => {
+const ShoppingCart = (props) => {
 
     let shoppingCart = useSelector(state => state.shoppingCart.product);
-
-    const [itemInShoppingList, setItemInShoppingList] = useState(false);
-
-    const dispatch = useDispatch();
-	const removeFromCart = (movie) => dispatch(cartAction.removeFromCart(movie))
     
-
-    if (shoppingCart !== []) {
-    const shoppingList = shoppingCart.map((movie, index) => (
-            <div key={index} className="movieContainer">
-                <MovieInCart
-                    title={movie ? movie.title : ''}
-                    poster={movie ? movie.poster_path : ''}
-                />
-                <div onClick={() => removeFromCart(movie)} className="removeCart">
-                    <RemoveFromCart />
+    if(props.toggle) {
+        if (shoppingCart !== []) {
+        const shoppingList = shoppingCart.map((movie, index) => {
+            return (
+                <div key={index} className="movieContainer">
+                    <MovieInCart
+                        title={movie ? movie.title : ''}
+                        poster={movie ? movie.poster_path : ''}
+                        price={movie.genre_ids[0] ? movie.genre_ids[0] : 8}
+                        remove={movie}
+                    />
                 </div>
-            </div>
-        ))
-        return (
-            <div>
-                <MovieListHeading heading='Shopping Cart' />
-                {shoppingList}
-                {shoppingList != ''
-                ?   <div className="buyButtonShoppingCart">
-                        <BuyButton text={"Buy"} />
+            )
+        })
+            return (
+                <div className="shoppingCartContainer">
+                    <MdShoppingCart className="shopping-cart-button flexEnd" size="3em" />
+                    <div className="cartItemsContainer">
+                        {shoppingList}
                     </div>
-                : ""
-                }
-                
-            </div> 
-        )
+                    {shoppingList != '' ?   
+                        <div className="buyButtonShoppingCart">
+                        <div className="lineBreak" />
+                        <div className="totalSumContainer">
+                        <p>Total: </p>
+                        <p>50$</p>
+                        </div>
+                            <BuyButton text={"Buy"} />
+                        </div>
+                    : ""}
+                </div> 
+            )
+        } else {
+            return (
+                <div>
+                    <p>Empty</p>
+                </div>
+            )
+        }
     } else {
         return (
-            <div>
-                <p>Empty</p>
+            <div className="shoppingCartContainer flexCenter">
+                    <MdShoppingCart className="shopping-cart-button" size="3em" />
+                {shoppingCart.length > 0 ? <p>500$ ({shoppingCart.length})</p> : ""}
             </div>
         )
     }

@@ -14,6 +14,7 @@ import NewReleaseList from './components/NewReleaseList';
 const App = () => {
 	const [movies, setMovies] = useState([]);
 	const [searchValue, setSearchValue] = useState('');
+	const [toggleShoppingCart, setToggleShoppingCart] = useState(false);
 
 	const dispatch = useDispatch();
 	const addToCart = (movie) => dispatch(cartAction.addToCart(movie))
@@ -30,12 +31,14 @@ const App = () => {
 			if (json.results) {
 				setMovies(json.results);
 			}
+			console.log('movies: ', movies)
 		} catch {
 			console.log('Failed to get data');
 		}
 		
 	};
 
+	console.log('Toggle: ', toggleShoppingCart)
 	useEffect(() => {
 		getMovieRequest(searchValue);
 	}, [searchValue]);
@@ -43,9 +46,11 @@ const App = () => {
 	return (
 		<div className="container">
 			<div>
-				
 				<MovieListHeading heading='Movies' />
 				<SearchBox searchValue={searchValue} setSearchValue={setSearchValue} />
+				<div className="shoppingCart" onClick={() => setToggleShoppingCart(prevToggle => !prevToggle)}>
+					<ShoppingCart toggle={toggleShoppingCart} />
+				</div>
 			</div>
 			<div>
 			{searchValue === '' ? 
@@ -59,9 +64,6 @@ const App = () => {
 				/>
 				</div>
 			}
-			</div>
-			<div className='row'>
-				<ShoppingCart />
 			</div>
 		</div>
 	);
