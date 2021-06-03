@@ -10,6 +10,7 @@ import { actions as apiAction } from './features/apiCall';
 import { actions as cartAction } from './features/shoppingCart';
 import ShoppingCart from './components/ShoppingCart';
 import NewReleaseList from './components/NewReleaseList';
+import Checkout from './components/Checkout';
 
 const App = () => {
 	const [movies, setMovies] = useState([]);

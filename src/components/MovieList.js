@@ -3,6 +3,7 @@ import './listItem.css';
 import '../App.css';
 import { useHistory } from 'react-router-dom';
 import { MdShoppingCart } from 'react-icons/md';
+import MovieListHeading from './MovieListHeading';
 
 
 
@@ -32,6 +33,8 @@ const MovieList = (props) => {
 	}, []);
 
 	return (
+		<div>
+			<MovieListHeading heading='Search results' />
 		<div className="row">
 			{props.movies.map((movie, index) => (
 				<div key={index} className="list-item">
@@ -65,6 +68,7 @@ const MovieList = (props) => {
 						</div>
 				</div>
 			))}
+		</div>
 		</div>
 	);
 };
