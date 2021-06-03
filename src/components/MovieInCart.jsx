@@ -3,17 +3,31 @@ import '../App.css';
 import RemoveFromCart from './RemoveFromCart';
 import { actions as cartAction } from '../features/shoppingCart';
 import { useDispatch } from 'react-redux';
+import { useEffect } from 'react';
 
 const MovieInCart = (props) => {
 
     let price = props.price;
+ 
+    const dispatch = useDispatch();
 
-    if(props.price >= 100) {
-        price = props.price.toString().substring(0, 2);
+    const removeFromCart = (movie) => {
+        if(props.price >= 100) {
+            price = props.price.toString().substring(0, 2);
+            parseInt(price);
+        }
+        dispatch(cartAction.removeFromCart(movie));
+        dispatch(cartAction.removeFromTotalSum(price));
     }
 
-    const dispatch = useDispatch();
-    const removeFromCart = (movie) => dispatch(cartAction.removeFromCart(movie))
+   /* useEffect(() => {
+        if(props.price >= 100) {
+            price = props.price.toString().substring(0, 2);
+            parseInt(price);
+        }
+        dispatch(cartAction.addToTotalSum(price));
+    }, []);
+    */
 
     return (
         <div className="cartItemContainer">

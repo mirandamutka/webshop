@@ -9,6 +9,9 @@ import { MdShoppingCart } from 'react-icons/md';
 const ShoppingCart = (props) => {
 
     let shoppingCart = useSelector(state => state.shoppingCart.product);
+    let totalSum = useSelector(state => state.shoppingCart.total);
+
+    console.log('total sum: ', totalSum);
     
     if(props.toggle) {
         if (shoppingCart !== []) {
@@ -18,7 +21,7 @@ const ShoppingCart = (props) => {
                     <MovieInCart
                         title={movie ? movie.title : ''}
                         poster={movie ? movie.poster_path : ''}
-                        price={movie.genre_ids[0] ? movie.genre_ids[0] : 8}
+                        price={movie.title.length}
                         remove={movie}
                     />
                 </div>
@@ -35,11 +38,11 @@ const ShoppingCart = (props) => {
                         <div className="lineBreak" />
                         <div className="totalSumContainer">
                         <p>Total: </p>
-                        <p>50$</p>
+                        <p>{totalSum}$</p>
                         </div>
                             <BuyButton text={"Buy"} />
                         </div>
-                    : ""}
+                    : <div className="buyButtonShoppingCart"></div>}
                 </div> 
             )
         } else {
@@ -53,7 +56,7 @@ const ShoppingCart = (props) => {
         return (
             <div className="shoppingCartContainer flexCenter">
                     <MdShoppingCart className="shopping-cart-button" size="3em" />
-                {shoppingCart.length > 0 ? <p>500$ ({shoppingCart.length})</p> : ""}
+                {shoppingCart.length > 0 ? <p>{totalSum}$ ({shoppingCart.length})</p> : ""}
             </div>
         )
     }

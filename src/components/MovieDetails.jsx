@@ -33,7 +33,11 @@ const MovieDetails = (props) => {
     if (movieID != null) {
         dispatch(apiAction.getDataFromId(movieID));
     }
-    const addToCart = (movie) => dispatch(cartAction.addToCart(movie))
+
+    const addToCart = (movie, price) => {
+		dispatch(cartAction.addToCart(movie));
+		dispatch(cartAction.addToTotalSum(price));
+	}
 
      useEffect(() => {
         getSelectedMovie();
@@ -66,7 +70,7 @@ const MovieDetails = (props) => {
                         ...movieCountry,
                         data.production_countries
                         );
-                    setMoviePrice(data.genres[0].id)
+                    setMoviePrice(data.title.length)
                 }	
             } catch {
                 console.log('Failed to get data');
@@ -121,7 +125,7 @@ const MovieDetails = (props) => {
                             )
                             }</div>
                         </section>
-                        <BuyButton text={`Buy ${moviePrice >= 100 ? moviePrice.toString().substring(0, 2) : moviePrice}$`} handleOnClick={() => addToCart(location.state.detail)} />
+                        <BuyButton text={`Buy ${moviePrice >= 100 ? moviePrice.toString().substring(0, 2) : moviePrice}$`} handleOnClick={() => addToCart(location.state.detail, moviePrice)} />
                     </section>
                 </section>
             </>

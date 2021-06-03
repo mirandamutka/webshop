@@ -12,6 +12,7 @@ const MovieList = (props) => {
 	const [genres, setGenres] = useState([]);
 	
 	let history = useHistory();
+	let moviePrice = 0;
 
 	let url = 'https://api.themoviedb.org/3/genre/movie/list?api_key=7ab73473a05278044ef701c06449633a'
 
@@ -63,8 +64,8 @@ const MovieList = (props) => {
 							</div>
 						
 						<div className="price-wrapper">
-									<p className="price">{movie.genre_ids[0] >= 100 ? movie.genre_ids[0].toString().substring(0, 2) : movie.genre_ids[0]}$</p>
-									<MdShoppingCart className="shopping-cart-button" size="2em" onClick={() => props.handleBuyClick(movie)} />
+									<p className="price">{movie.title.length}$</p>
+									<MdShoppingCart className="shopping-cart-button" size="2em" onClick={() => props.handleBuyClick(movie, movie.title.length)} />
 						</div>
 				</div>
 			))}
