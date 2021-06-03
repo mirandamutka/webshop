@@ -63,7 +63,6 @@ const App = () => {
 			<div className='row'>
 				<ShoppingCart />
 			</div>
-      <Checkout />
 		</div>
 	);
 };
