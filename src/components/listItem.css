@@ -5,10 +5,19 @@
     flex-direction: column;
     margin: 10px;
     align-items: center;
+    text-align: center;
+    flex-wrap: wrap;
+    max-width: 170px;
 }
 
 .list-item img {
     height: 250px;
+}
+
+.list-item .gray-box {
+    height: 250px;
+    width: 170px;
+    background-color: gray;
 }
 
 .list-item .title {
@@ -17,10 +26,19 @@
     margin-bottom: 0px;
 }
 
+.list-item .genre-container {
+    text-align: center;
+    flex-direction: row;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
 .list-item .genre {
     font-family: 'Oswald', sans-serif;
     margin-top: 0px;
     margin-bottom: 0px;
+    padding-right: 5px;
 }
 
 .list-item .director {

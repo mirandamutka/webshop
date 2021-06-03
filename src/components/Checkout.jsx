@@ -1,27 +1,35 @@
 
 import React from 'react';
-import { MdDelete } from "react-icons/md"
-
+import { useDispatch, useSelector } from 'react-redux';
+import { actions as cartAction } from '../features/shoppingCart';
+import MovieInCart from './MovieInCart';
+import RemoveFromCart from './RemoveFromCart';
+import MovieListHeading from './MovieListHeading';
 
 const Checkout = () => {
 
-    return (
-        <div className="checkout-wrapper">
-            <header className="checkout-header">
-                <h1 className="checkout-title">Your shopping cart</h1>
-            </header>
-            <div>
-                <div className="in-shopping-cart-wrapper">
-                    <img src="bla bla" alt="poster"></img>
-                    <h3>title</h3>
-                    <p>8$</p>
-                    <MdDelete className="delete-button" size="2em" />
-                </div>
-                <div>
-                    
-                </div>
+    let shoppingCart = useSelector(state => state.shoppingCart.product);
+
+    const dispatch = useDispatch();
+	const removeFromCart = (movie) => dispatch(cartAction.removeFromCart(movie))
+
+    const shoppingList = shoppingCart.map((movie, index) => (
+        <div key={index} className="movieContainer">
+            <MovieInCart title={movie ? movie.title : ''} poster={movie ? movie.poster_path : ''}/>
+            <div onClick={() => removeFromCart(movie)} className="removeCart">
+                <RemoveFromCart />
             </div>
         </div>
+    ));
+
+    return (
+        <div>
+            <div className="checkout-shopping-cart">
+                <MovieListHeading heading='Your Shopping Cart' />
+                {shoppingList} 
+            </div>
+
+        </div> 
     )
 }
 

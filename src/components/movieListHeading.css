@@ -1,8 +1,4 @@
-.new-releases-headline {
+.list-heading {
     color: #5E42D6;
     font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
-}
-
-.new-releases-conentent {
-    display: flex;
 }
