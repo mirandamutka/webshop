@@ -1,4 +1,4 @@
-.NewReleaseList {
+.Filters {
     text-align: center;
     height: 100vh;
     width: 100%;
@@ -15,6 +15,7 @@
 
     .list-inline-item button {
         font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+       
         width: 10vw;
         padding: 1.5vh 2.5vh;
         border: 0vh;

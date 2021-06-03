@@ -1,8 +1,10 @@
 {
   "ExpandedNodes": [
     "",
-    "\\src"
+    "\\src",
+    "\\src\\components",
+    "\\src\\features"
   ],
-  "SelectedNode": "\\src\\index.js",
+  "SelectedNode": "\\src\\components\\searchBox.css",
   "PreviewInSolutionExplorer": false
 }
