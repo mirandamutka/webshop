@@ -18,9 +18,18 @@ const App = () => {
 	const [toggleShoppingCart, setToggleShoppingCart] = useState(false);
 
 	const dispatch = useDispatch();
+
+	let shoppingCart = useSelector(state => state.shoppingCart.product);
+
 	const addToCart = (movie, price) => {
-		dispatch(cartAction.addToCart(movie));
-		dispatch(cartAction.addToTotalSum(price));
+		let found = shoppingCart.find(cartItem => cartItem.title === movie.title);
+		if (!found) {
+			dispatch(cartAction.addToCart(movie));
+			dispatch(cartAction.addToTotalSum(price));
+		} else {
+			console.log('Product already added');
+		}
+		
 	}
 	if (searchValue !== '') {
 		dispatch(apiAction.getDataFromSearch(searchValue));
