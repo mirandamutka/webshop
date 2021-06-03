@@ -15,10 +15,22 @@ import Checkout from './components/Checkout';
 const App = () => {
 	const [movies, setMovies] = useState([]);
 	const [searchValue, setSearchValue] = useState('');
+	const [toggleShoppingCart, setToggleShoppingCart] = useState(false);
 
 	const dispatch = useDispatch();
-	const addToCart = (movie) => dispatch(cartAction.addToCart(movie))
-	
+
+	let shoppingCart = useSelector(state => state.shoppingCart.product);
+
+	const addToCart = (movie, price) => {
+		let found = shoppingCart.find(cartItem => cartItem.title === movie.title);
+		if (!found) {
+			dispatch(cartAction.addToCart(movie));
+			dispatch(cartAction.addToTotalSum(price));
+		} else {
+			console.log('Product already added');
+		}
+		
+	}
 	if (searchValue !== '') {
 		dispatch(apiAction.getDataFromSearch(searchValue));
 	}
@@ -31,37 +43,53 @@ const App = () => {
 			if (json.results) {
 				setMovies(json.results);
 			}
+			console.log('movies: ', movies);
 		} catch {
 			console.log('Failed to get data');
 		}
 		
 	};
 
+	console.log('toggle: ', toggleShoppingCart)
 	useEffect(() => {
 		getMovieRequest(searchValue);
 	}, [searchValue]);
 
+	const collapseShoppingCart = () => {
+		if (toggleShoppingCart) {
+			setToggleShoppingCart(false);
+		}
+	}
+
+	const expandShoppingCart = () => {
+		if (!toggleShoppingCart) {
+			setToggleShoppingCart(true);
+		}
+	}
+
 	return (
-		<div className="container">
-			<div>
-				<MovieListHeading heading='Movies' />
-				<SearchBox searchValue={searchValue} setSearchValue={setSearchValue} />
-			</div>
-			<div>
-			{searchValue === '' ? 
-				<NewReleaseList handleBuyClick={addToCart}/>	
-				:	
-				<div className='row'>
-				<MovieList
-				movies={movies}
-				handleBuyClick={addToCart}
-				// cartItem={AddToCart}
-				/>
+		<div>
+			<div className="shoppingCart" onClick={() => expandShoppingCart()}>
+						<ShoppingCart toggle={toggleShoppingCart} />
+					</div>
+			<div className="container" onClick={() => collapseShoppingCart()}>
+				<div>
+					<MovieListHeading heading='Movies' />
+					<SearchBox searchValue={searchValue} setSearchValue={setSearchValue} />
 				</div>
-			}
-			</div>
-			<div className='row'>
-				<ShoppingCart />
+				<div>
+				{searchValue === '' ? 
+					<NewReleaseList handleBuyClick={addToCart}/>	
+					:	
+					<div className='row'>
+					<MovieList
+					movies={movies}
+					handleBuyClick={addToCart}
+					// cartItem={AddToCart}
+					/>
+					</div>
+				}
+				</div>
 			</div>
 		</div>
 	);
