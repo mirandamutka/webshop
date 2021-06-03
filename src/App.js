@@ -38,7 +38,7 @@ const App = () => {
 	};
 
 	useEffect(() => {
-		getMovieRequest(searchValue);
+	  getMovieRequest(searchValue);
 	}, [searchValue]);
 
 	return (
@@ -63,6 +63,7 @@ const App = () => {
 			<div className='row'>
 				<ShoppingCart />
 			</div>
+      <Checkout />
 		</div>
 	);
 };

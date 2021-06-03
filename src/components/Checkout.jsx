@@ -1,4 +1,4 @@
-
+import './checkout.css'
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { actions as cartAction } from '../features/shoppingCart';
@@ -22,12 +22,30 @@ const Checkout = () => {
         </div>
     ));
 
+
     return (
-        <div>
-            <div className="checkout-shopping-cart">
-                <MovieListHeading heading='Your Shopping Cart' />
+        <div className="checkout-page">
+            <h1 className="strikearound">Your Shopping Cart</h1>
+            <div className="shopping-cart">
                 {shoppingList} 
             </div>
+            <h1 className="strikearound">Select payment method</h1>
+            <div className="paymethod">
+                <img className="payment-img" src="https://cdn0.iconfinder.com/data/icons/credit-card-debit-card-payment-PNG/128/Mastercard-Curved.png" alt=""></img> 
+                <img className="payment-img" src="https://cdn0.iconfinder.com/data/icons/credit-card-debit-card-payment-PNG/128/Discover-Curved.png" alt=""></img>
+                <img className="payment-img" src="https://cdn0.iconfinder.com/data/icons/credit-card-debit-card-payment-PNG/128/Paypal-Curved.png" alt=""></img> 
+                <img className="payment-img" src="https://cdn0.iconfinder.com/data/icons/credit-card-debit-card-payment-PNG/128/American-Express-Curved.png" alt=""></img> 
+            </div>
+            <h1 className="strikearound">Your information</h1>
+            <div className="costumer-info">
+                <form>
+                    <input type="text" placeholder="First name"></input><br/>
+                    <input type="text" placeholder="Last name"></input><br/>
+                    <input type="email" id="email" name="email" placeholder="E-mail" required></input><br/>
+                    <input type="submit" value="DSDF"></input>
+                </form>
+            </div>
+            
 
         </div> 
     )
