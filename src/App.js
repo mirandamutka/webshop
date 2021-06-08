@@ -79,12 +79,16 @@ const App = () => {
 				</div>
 				<div>
 				{searchValue === '' ? 
-					<NewReleaseList handleBuyClick={addToCart}/>	
+					<NewReleaseList 
+						handleBuyClick={addToCart}
+						shoppingCart={shoppingCart}
+						/>	
 					:	
 					<div className='row'>
 					<MovieList
 					movies={movies}
 					handleBuyClick={addToCart}
+					shoppingCart={shoppingCart}
 					// cartItem={AddToCart}
 					/>
 					</div>
