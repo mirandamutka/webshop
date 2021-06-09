@@ -1,7 +1,9 @@
 .App {
   text-align: center;
-  height: 100vh;
+  height: 100%;
   width: 100%;
+  background-color: #FFF4FF;
+  overflow: hidden;
 }
 
 body {
@@ -16,28 +18,39 @@ body {
 }
 
 .container {
-  width: 100vw;
+    width: 100vw;
+    padding-top: 2vmin;
 }
 
 .shoppingCart {
-  display: flex;
-  flex-direction: row;
-  padding: 1%;
-  z-index: 100;
-  position: absolute;
-  top: 0;
-  right: 0;
-  max-height: 14vh;
-  transition: max-height 1s;
+    display: flex;
+    flex-direction: row;
+    padding: 1%;
+    z-index: 100;
+    position: fixed;
+    top: 0;
+    right: 0;
+    max-height: 14vh;
+    transition: max-height 1s;
 }
 
-.shoppingCart:hover {
-  max-height: 50vh;
+@media only screen and (min-width: 769px) {
+
+    .shoppingCart:hover {
+        max-height: 50vh;
+    }
 }
 
 @media only screen and (max-width: 768px) {
-  .shoppingCart {
-    max-height: 100%;
-    justify-content: center;
-  }
+    .shoppingCart {
+        position: sticky;
+        max-height: 100%;
+        justify-content: flex-end;
+    }
+}
+
+.newReleaseList {
+    display: flex;
+    max-height: 30vmin;
+   
 }

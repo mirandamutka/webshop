@@ -38,13 +38,13 @@ const MovieList = (props) => {
 		if (!found) {
             return (
                 <div className="price-wrapper">
-                    <p className="price">{movie.title.length}$</p> <MdShoppingCart className="shopping-cart-button" size="2em" onClick={() => props.handleBuyClick(movie, movie.title.length)} />
+                    <p className="price">{movie.title.length}$</p> <MdShoppingCart className="shopping-cart-button small-display" size="2em" onClick={() => props.handleBuyClick(movie, movie.title.length)} />
                 </div>
             )
         } else {
             return (
                 <div className="price-wrapper">
-                    <p className="price">{movie.title.length}$</p> <MdCheckCircle className="shopping-cart-button" size="2em" />
+                    <p className="price">{movie.title.length}$</p> <MdCheckCircle className="shopping-cart-button small-display" size="2em" />
                 </div>
             )
         }

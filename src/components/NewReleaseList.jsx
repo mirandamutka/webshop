@@ -1,4 +1,3 @@
-
 import './listItem.css';
 import './newReleasesList.css';
 import { MdShoppingCart, MdCheckCircle } from 'react-icons/md';
@@ -6,7 +5,6 @@ import React, { useEffect, useState } from 'react';
 import { useHistory } from 'react-router';
 import { useDispatch } from 'react-redux';
 import { actions as movieAction } from '../features/movieDetails';
-import MovieListHeading from './MovieListHeading';
 
 const NewReleaseList = (props) => {
 
@@ -62,10 +60,9 @@ const NewReleaseList = (props) => {
 }
 
     return (
-        <div>
-            <MovieListHeading heading='New Movies' />
+        
             <div className="row">
-                {movieList.map((movie, index) => (
+                {movieList.slice(0, 5).map((movie, index) => (
                     <div key={index} className="list-item">
                         {movie.poster_path ?
                             <img src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`} className="list-item-image" alt='movie' onClick={() => goToMovieDetails(movie)}></img>
@@ -89,7 +86,7 @@ const NewReleaseList = (props) => {
                     </div>
                 ))}
             </div>
-        </div>
+        
     );
 }
 

@@ -10,6 +10,7 @@ import { actions as apiAction } from './features/apiCall';
 import { actions as cartAction } from './features/shoppingCart';
 import ShoppingCart from './components/ShoppingCart';
 import NewReleaseList from './components/NewReleaseList';
+import Filters from "./components/Filters";
 import Checkout from './components/Checkout';
 
 const App = () => {
@@ -66,30 +67,34 @@ const App = () => {
 	}
 
 	return (
-		<div>
+		<div className="App">
 			<div className="shoppingCart" onClick={() => expandShoppingCart()}>
-						<ShoppingCart toggle={toggleShoppingCart} />
-					</div>
+				<ShoppingCart toggle={toggleShoppingCart} />
+			</div>
 			<div className="container" onClick={() => collapseShoppingCart()}>
+				<NewReleaseList 
+					handleBuyClick={addToCart} 
+					shoppingCart={shoppingCart} 
+				/>
+				<SearchBox 
+					searchValue={searchValue} 
+					setSearchValue={setSearchValue} 
+				/>				
 				<div>
-					<MovieListHeading heading='Movies' />
-					<SearchBox searchValue={searchValue} setSearchValue={setSearchValue} />
-				</div>
-				<div>
-				{searchValue === '' ? 
-					<NewReleaseList 
-						handleBuyClick={addToCart}
-						shoppingCart={shoppingCart}
-						/>	
+					{searchValue === '' ? 	
+					<Filters 
+						handleBuyClick={addToCart} 
+						shoppingCart={shoppingCart} 
+					/>
 					:	
 					<div className='row'>
-					<MovieList
-					movies={movies}
-					handleBuyClick={addToCart}
-					shoppingCart={shoppingCart}
-					/>
+						<MovieList
+							movies={movies}
+							handleBuyClick={addToCart}
+							shoppingCart={shoppingCart}
+						/>
 					</div>
-				}
+					}	
 				</div>
 			</div>
 		</div>

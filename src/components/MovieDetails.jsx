@@ -109,18 +109,25 @@ const MovieDetails = (props) => {
             ? (
             <>
                 <section className="imgBox">
-                    <img src={`https://image.tmdb.org/t/p/w500/${moviePoster}`} className="moviePoster" alt="" />
+                    {moviePoster != null ?
+                     <img src={`https://image.tmdb.org/t/p/w500/${moviePoster}`} className="moviePoster" alt="" />
+                    : 
+                    <div className="gray-box" />
+                    }
+                   
                 </section>
                 <section className="infoBox">
                     <section className="topInfo">
                         <h3>{movieName}</h3>
                         <section className="ratingGenre">
                             <div className="movieRating">{movieRating}</div> | 
-                                {movieGenre.map((genre, index) => (
-                                    <div className="movieGenre" key={index}>
-                                        {genre.name}
-                                    </div>
-                                ))}
+                                <div className="genreContainer">
+                                    {movieGenre.map((genre, index) => (
+                                        <div className="movieGenre" key={index}>
+                                            {genre.name}
+                                        </div>
+                                    ))}
+                                </div>
                             
                         </section>
                         <div className="moviePlot">
@@ -129,19 +136,18 @@ const MovieDetails = (props) => {
                     </section>
                     <section className="bottomInfo">
                         <section className="languageCountry">
-                            <div className="movieLanguage">Language 
+                            <div>Language 
                             {movieLanguage.map((language, index) => 
                                 <b key={index}> {language.english_name}</b>
                             )
                             }</div>
-                            <div className="movieCountry">Country 
+                            <div>Country 
                             {movieCountry.map((country, index) => 
                                 <b key={index}> {country.name}</b>
                             )
                             }</div>
                         </section>
-                        {toggleBuyButton()}
-                        
+                                {toggleBuyButton()}
                     </section>
                 </section>
             </>

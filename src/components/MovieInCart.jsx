@@ -21,15 +21,13 @@ const MovieInCart = (props) => {
 
     return (
         <div className="cartItemContainer">
-            <div className="row">
             <img src={`https://image.tmdb.org/t/p/w500/${props.poster}`} className="cartItemPoster" alt="" />
             <p className="cartItemTitle">{props.title}</p>
-            </div>
-            <div className="row rightRow">
-            <p className="cartItemPrice">{price}$</p>
-            <div onClick={() => removeFromCart(props.remove)}>
-                <RemoveFromCart />
-            </div>
+            <div className="rightRow">
+                <p className="cartItemPrice">{price}$</p>
+                <div onClick={() => removeFromCart(props.remove)}>
+                    <RemoveFromCart />
+                </div>
             </div>
         </div>
     )

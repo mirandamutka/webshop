@@ -28,7 +28,7 @@ const ShoppingCart = (props) => {
             return (
                 
                 <div className={shoppingCart.length != 0 ? `shoppingCartContainer  expanded` : `shoppingCartContainer`}>
-                    <MdShoppingCart className="shopping-cart-button flexEnd" size="3em" />
+                    <MdShoppingCart className="flexEnd" size="3em" />
                     <div className={shoppingCart.length != 0 ? `cartItemsContainer  minimized` : `cartItemsContainer`}>
                         {shoppingList}
                     </div>
@@ -54,8 +54,8 @@ const ShoppingCart = (props) => {
     } else {
         return (
             <div className="shoppingCartContainer flexCenter">
-                    <MdShoppingCart className="shopping-cart-button" size="3em" />
-                {shoppingCart.length > 0 ? <div className="row flexBetween"><p>{totalSum}$</p> <p className="cartItemAmount">({shoppingCart.length})</p></div> : ""}
+                    <MdShoppingCart className="flexEnd" size="3em" />
+                {shoppingCart.length > 0 ? <div className="row flexBetween"><p className="cartItemAmount">{shoppingCart.length}</p></div> : ""}
             </div>
         )
     }
