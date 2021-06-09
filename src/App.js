@@ -10,6 +10,7 @@ import { actions as apiAction } from './features/apiCall';
 import { actions as cartAction } from './features/shoppingCart';
 import ShoppingCart from './components/ShoppingCart';
 import NewReleaseList from './components/NewReleaseList';
+import Filters from "./components/Filters";
 import Checkout from './components/Checkout';
 
 const App = () => {
@@ -80,6 +81,7 @@ const App = () => {
 				<div>
 				{searchValue === '' ? 
 					<NewReleaseList handleBuyClick={addToCart}/>	
+						//<Filters handleBuyClick={addToCart}/>
 					:	
 					<div className='row'>
 					<MovieList

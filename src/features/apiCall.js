@@ -18,7 +18,7 @@ const reducer = createReducer(initialState, {
             url:  `https://api.themoviedb.org/3/search/movie?api_key=${api_key}&query=${action.payload}`
         }
     },
-
+    
     [getDataFromId] : (state, action) => {
         return {
             ...state,
