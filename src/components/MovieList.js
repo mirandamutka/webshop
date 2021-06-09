@@ -56,7 +56,10 @@ const MovieList = (props) => {
 			{props.movies.map((movie, index) => (
 				<div key={index} className="list-item">
 					{movie.poster_path ? 
-							<img src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`} className="list-item-image" alt='movie' onClick={() => history.push({
+						<img src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`}
+							className="list-item-image"
+							alt='movie'
+							onClick={() => history.push({
 								pathname: '/MovieDetails',
 								state: { detail: movie }
 							})}></img>

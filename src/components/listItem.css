@@ -1,30 +1,38 @@
-
+.movieListHeading .list-heading {
+    justify-content: center;
+}
 
 .list-item {
     display: flex;
     flex-direction: column;
-    margin: 10px;
+    margin: 1vmin;
     align-items: center;
     text-align: center;
     flex-wrap: wrap;
-    max-width: 170px;
+    max-width: 20.4vmin;
+    
 }
 
 .list-item img {
-    height: 250px;
+    height: 30vmin;
 }
 
-.list-item .gray-box {
-    height: 250px;
-    width: 170px;
-    background-color: gray;
-}
+    .list-item img:hover {
+        transform: scale(1.05);
+    }
 
-.list-item .title {
-    font-family: 'Oswald', sans-serif;
-    margin-top: 5px;
-    margin-bottom: 0px;
-}
+    .list-item .gray-box {
+        height: 30vmin;
+        width: 20.4vmin;
+        background-color: gray;
+    }
+
+    .list-item .title {
+        font-family: 'Oswald', sans-serif;
+        font-size: 2vmin;
+        margin-top: 5px;
+        margin-bottom: 0px;
+    }
 
 .list-item .genre-container {
     text-align: center;
@@ -34,12 +42,13 @@
     justify-content: center;
 }
 
-.list-item .genre {
-    font-family: 'Oswald', sans-serif;
-    margin-top: 0px;
-    margin-bottom: 0px;
-    padding-right: 5px;
-}
+    .list-item .genre {
+        font-family: 'Oswald', sans-serif;
+        font-size: 1.8vmin;
+        margin-top: 0px;
+        margin-bottom: 0px;
+        padding-right: 5px;
+    }
 
 .list-item .director {
     font-family: 'Oswald', sans-serif;
@@ -56,8 +65,13 @@
     margin-bottom: 5px;
 }
 
-.list-item .price {
-    margin: 5px;
+    .list-item .price {
+        font-size: 1.8vmin;
+        margin: 5px;
+    }
+
+.shopping-cart-button:hover {
+    transform: scale(1.3);
 }
 
 .shopping-cart-button {

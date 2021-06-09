@@ -16,28 +16,38 @@ body {
 }
 
 .container {
-  width: 100vw;
+    width: 100vw;
+    padding-top: 2vmin;
 }
 
 .shoppingCart {
-  display: flex;
-  flex-direction: row;
-  padding: 1%;
-  z-index: 100;
-  position: absolute;
-  top: 0;
-  right: 0;
-  max-height: 14vh;
-  transition: max-height 1s;
+    display: flex;
+    flex-direction: row;
+    padding: 1%;
+    z-index: 100;
+    position: absolute;
+    top: 0;
+    right: 0;
+    position: absolute;
+    top: 0;
+    right: 0;
+    max-height: 14vh;
+    transition: max-height 1s;
 }
 
-.shoppingCart:hover {
-  max-height: 50vh;
-}
+    .shoppingCart:hover {
+        max-height: 50vh;
+    }
 
 @media only screen and (max-width: 768px) {
-  .shoppingCart {
-    max-height: 100%;
-    justify-content: center;
-  }
+    .shoppingCart {
+        max-height: 100%;
+        justify-content: center;
+    }
+}
+
+.newReleaseList {
+    display: flex;
+    max-height: 30vmin;
+   
 }

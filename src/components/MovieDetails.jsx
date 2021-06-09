@@ -147,8 +147,7 @@ const MovieDetails = (props) => {
                             )
                             }</div>
                         </section>
-                        {toggleBuyButton()}
-                        
+                                {toggleBuyButton()}
                     </section>
                 </section>
             </>
