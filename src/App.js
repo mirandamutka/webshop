@@ -94,8 +94,8 @@ const App = () => {
 					<div className='row'>
 					<MovieList
 					movies={movies}
-								handleBuyClick={addToCart}
-								shoppingCart={shoppingCart}
+					handleBuyClick={addToCart}
+					shoppingCart={shoppingCart}
 					// cartItem={AddToCart}
 					/>
 					</div>

@@ -37,7 +37,7 @@ const NewReleaseList = (props) => {
 
     const toggleBuyButton = (movie) => {
         let found = props.shoppingCart.find(cartItem => cartItem.title === movie.title);
-        if (!found) {
+		if (!found) {
             return (
                 <div className="price-wrapper">
                     <p className="price">{movie.title.length}$</p> <MdShoppingCart className="shopping-cart-button" size="2em" onClick={() => props.handleBuyClick(movie, movie.title.length)} />
@@ -50,7 +50,7 @@ const NewReleaseList = (props) => {
                 </div>
             )
         }
-    }
+}
 
     return (
         
@@ -58,10 +58,7 @@ const NewReleaseList = (props) => {
                 {movieList.slice(0, 5).map((movie, index) => (
                     <div key={index} className="list-item">
                         {movie.poster_path ?
-                            <img src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`}
-                                className="list-item-image"
-                                alt='movie'
-                                onClick={() => history.push({
+                            <img src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`} className="list-item-image" alt='movie' onClick={() => history.push({
                                 pathname: '/MovieDetails',
                                 state: { detail: movie }
                             })}></img>

@@ -13,7 +13,6 @@ const MovieList = (props) => {
 	
 	let history = useHistory();
 
-
 	let url = 'https://api.themoviedb.org/3/genre/movie/list?api_key=7ab73473a05278044ef701c06449633a'
 
 	const findGenre = async () => {
@@ -30,20 +29,20 @@ const MovieList = (props) => {
 	};
 
 	const toggleBuyButton = (movie) => {
-		let found = props.shoppingCart.find(cartItem => cartItem.title === movie.title);
+        let found = props.shoppingCart.find(cartItem => cartItem.title === movie.title);
 		if (!found) {
-			return (
-				<div className="price-wrapper">
-					<p className="price">{movie.title.length}$</p> <MdShoppingCart className="shopping-cart-button" size="2em" onClick={() => props.handleBuyClick(movie, movie.title.length)} />
-				</div>
-			)
-		} else {
-			return (
-				<div className="price-wrapper">
-					<p className="price">{movie.title.length}$</p> <MdCheckCircle className="shopping-cart-button" size="2em" />
-				</div>
-			)
-		}
+            return (
+                <div className="price-wrapper">
+                    <p className="price">{movie.title.length}$</p> <MdShoppingCart className="shopping-cart-button" size="2em" onClick={() => props.handleBuyClick(movie, movie.title.length)} />
+                </div>
+            )
+        } else {
+            return (
+                <div className="price-wrapper">
+                    <p className="price">{movie.title.length}$</p> <MdCheckCircle className="shopping-cart-button" size="2em" />
+                </div>
+            )
+        }
 	}
 
 	useEffect(() => {
@@ -80,7 +79,7 @@ const MovieList = (props) => {
 							)}
 							</div>
 						
-					{toggleBuyButton(movie)}
+							{toggleBuyButton(movie)}
 				</div>
 			))}
 		</div>

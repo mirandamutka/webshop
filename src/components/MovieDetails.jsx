@@ -34,6 +34,7 @@ const MovieDetails = (props) => {
     let url = useSelector(state => state.apiCall.url);
 
     let shoppingCart = useSelector(state => state.shoppingCart.product);
+
     if (movieID != null) {
         dispatch(apiAction.getDataFromId(movieID));
     }
@@ -93,7 +94,7 @@ const MovieDetails = (props) => {
         let found = shoppingCart.find(cartItem => cartItem.title === movieName);
         if (!found) {
             return (
-                <BuyButton text={`Buy ${moviePrice}$`} handleOnClick={() => handleBuyButton()} />
+                <BuyButton text={`Buy ${moviePrice}$`} handleOnClick={ () => handleBuyButton()} />
             )
         } else {
             return (
@@ -146,7 +147,7 @@ const MovieDetails = (props) => {
                             )
                             }</div>
                         </section>
-                                {toggleBuyButton()}
+                        <BuyButton text={`Buy ${moviePrice >= 100 ? moviePrice.toString().substring(0, 2) : moviePrice}$`} handleOnClick={() => addToCart(location.state.detail, moviePrice)} />
                     </section>
                 </section>
             </>
