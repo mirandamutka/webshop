@@ -1,5 +1,4 @@
-
-import './listItem.css'
+﻿import './listItem.css'
 import './newReleasesList.css'
 import { MdShoppingCart } from "react-icons/md"
 import React, { useEffect, useState } from 'react'
