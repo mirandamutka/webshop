@@ -1,4 +1,5 @@
 import './MovieDetails.css';
+import './BuyButton.css';
 import BuyButton from './BuyButton';
 import { useLocation, useHistory } from 'react-router-dom';
 import { useState, useEffect } from 'react';
@@ -22,6 +23,7 @@ const MovieDetails = (props) => {
     const [movieLanguage, setMovieLanguage] = useState([]);
     const [movieCountry, setMovieCountry] = useState([]);
     const [moviePrice, setMoviePrice] = useState();
+    const [addedToCart, setAddedToCart] = useState(false);
 
     useEffect(() => {
         setMovieID(location.state.detail.id);
@@ -30,6 +32,8 @@ const MovieDetails = (props) => {
      const dispatch = useDispatch();
      
     let url = useSelector(state => state.apiCall.url);
+
+    let shoppingCart = useSelector(state => state.shoppingCart.product);
     if (movieID != null) {
         dispatch(apiAction.getDataFromId(movieID));
     }
@@ -85,6 +89,23 @@ const MovieDetails = (props) => {
         history.push('/')
     }
 
+    const toggleBuyButton = () => {
+        let found = shoppingCart.find(cartItem => cartItem.title === movieName);
+        if (!found) {
+            return (
+                <BuyButton text={`Buy ${moviePrice}$`} handleOnClick={() => handleBuyButton()} />
+            )
+        } else {
+            return (
+                <p className="buyButtonDisabled">✓ Added</p>
+            )
+        }
+    }
+
+    const handleBuyButton = () => {
+        addToCart(location.state.detail, moviePrice);
+    }
+
     return (
         <div className="movieDetailsContainer">
             <div className="closeWindow" onClick={() => handleCloseWindow()}>✕</div>
@@ -125,7 +146,7 @@ const MovieDetails = (props) => {
                             )
                             }</div>
                         </section>
-                        <BuyButton text={`Buy ${moviePrice >= 100 ? moviePrice.toString().substring(0, 2) : moviePrice}$`} handleOnClick={() => addToCart(location.state.detail, moviePrice)} />
+                                {toggleBuyButton()}
                     </section>
                 </section>
             </>

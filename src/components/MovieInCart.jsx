@@ -3,7 +3,7 @@ import '../App.css';
 import RemoveFromCart from './RemoveFromCart';
 import { actions as cartAction } from '../features/shoppingCart';
 import { useDispatch } from 'react-redux';
-import { useEffect } from 'react';
+
 
 const MovieInCart = (props) => {
 
@@ -20,14 +20,6 @@ const MovieInCart = (props) => {
         dispatch(cartAction.removeFromTotalSum(price));
     }
 
-   /* useEffect(() => {
-        if(props.price >= 100) {
-            price = props.price.toString().substring(0, 2);
-            parseInt(price);
-        }
-        dispatch(cartAction.addToTotalSum(price));
-    }, []);
-    */
 
     return (
         <div className="cartItemContainer">

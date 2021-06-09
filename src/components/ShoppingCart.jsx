@@ -1,6 +1,7 @@
 import './ShoppingCart.css';
 import './listItem.css';
 import BuyButton from './BuyButton';
+import { useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import MovieInCart from './MovieInCart';
 import { MdShoppingCart } from 'react-icons/md';
@@ -12,38 +13,39 @@ const ShoppingCart = (props) => {
     let totalSum = useSelector(state => state.shoppingCart.total);
 
     console.log('total sum: ', totalSum);
-    
-    if(props.toggle) {
+
+    if (props.toggle) {
         if (shoppingCart !== []) {
-        const shoppingList = shoppingCart.map((movie, index) => {
+            const shoppingList = shoppingCart.map((movie, index) => {
+                return (
+                    <div key={index} className="movieContainer">
+                        <MovieInCart
+                            title={movie ? movie.title : ''}
+                            poster={movie ? movie.poster_path : ''}
+                            price={movie.title.length}
+                            remove={movie}
+                        />
+                    </div>
+                )
+            })
             return (
-                <div key={index} className="movieContainer">
-                    <MovieInCart
-                        title={movie ? movie.title : ''}
-                        poster={movie ? movie.poster_path : ''}
-                        price={movie.title.length}
-                        remove={movie}
-                    />
-                </div>
-            )
-        })
-            return (
-                <div className="shoppingCartContainer">
+
+                <div className={shoppingCart.length != 0 ? `shoppingCartContainer  expanded` : `shoppingCartContainer`}>
                     <MdShoppingCart className="shopping-cart-button flexEnd" size="3em" />
                     <div className="cartItemsContainer">
                         {shoppingList}
                     </div>
-                    {shoppingList != '' ?   
+                    {shoppingList != '' ?
                         <div className="buyButtonShoppingCart">
-                        <div className="lineBreak" />
-                        <div className="totalSumContainer">
-                        <p>Total: </p>
-                        <p>{totalSum}$</p>
-                        </div>
+                            <div className="lineBreak" />
+                            <div className="totalSumContainer">
+                                <p>Total: </p>
+                                <p>{totalSum}$</p>
+                            </div>
                             <BuyButton text={"Buy"} />
                         </div>
-                    : <div className="buyButtonShoppingCart"></div>}
-                </div> 
+                        : <div className="buyButtonShoppingCart"></div>}
+                </div>
             )
         } else {
             return (
@@ -55,8 +57,8 @@ const ShoppingCart = (props) => {
     } else {
         return (
             <div className="shoppingCartContainer flexCenter">
-                    <MdShoppingCart className="shopping-cart-button" size="3em" />
-                {shoppingCart.length > 0 ? <p>{totalSum}$ ({shoppingCart.length})</p> : ""}
+                <MdShoppingCart className="shopping-cart-button" size="3em" />
+                {shoppingCart.length > 0 ? <div className="row flexBetween"><p>{totalSum}$</p> <p className="cartItemAmount">({shoppingCart.length})</p></div> : ""}
             </div>
         )
     }

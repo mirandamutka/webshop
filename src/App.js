@@ -75,18 +75,27 @@ const App = () => {
 					</div>
 			<div className="container" onClick={() => collapseShoppingCart()}>
 				<div>
-					<MovieListHeading heading='Movies' />
+					
+
+					
+							<NewReleaseList handleBuyClick={addToCart} shoppingCart={shoppingCart} />
+							
+						
+
 					<SearchBox searchValue={searchValue} setSearchValue={setSearchValue} />
 				</div>
 				<div>
-				{searchValue === '' ? 
-					<NewReleaseList handleBuyClick={addToCart}/>	
-						//<Filters handleBuyClick={addToCart}/>
+					{searchValue === '' ? 
+						
+							<Filters handleBuyClick={addToCart} shoppingCart={shoppingCart} />
+							
+
 					:	
 					<div className='row'>
 					<MovieList
 					movies={movies}
-					handleBuyClick={addToCart}
+								handleBuyClick={addToCart}
+								shoppingCart={shoppingCart}
 					// cartItem={AddToCart}
 					/>
 					</div>

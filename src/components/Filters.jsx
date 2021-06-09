@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
 import '../App.css';
 import './filters.css';
-import { MdShoppingCart } from 'react-icons/md';
-
+import { MdShoppingCart, MdCheckCircle } from "react-icons/md"
+import NewReleaseList from "../components/NewReleaseList";
 import { useHistory } from 'react-router-dom';
 import axios from 'axios';
 
@@ -92,16 +92,36 @@ const Filters = ( props) => {
         );
     });
 
+    const toggleBuyButton = (movie) => {
+        let found = props.shoppingCart.find(cartItem => cartItem.title === movie.title);
+        if (!found) {
+            return (
+                <div className="price-wrapper">
+                    <p className="price">{movie.title.length}$</p> <MdShoppingCart className="shopping-cart-button" size="2em" onClick={() => props.handleBuyClick(movie, movie.title.length)} />
+                </div>
+            )
+        } else {
+            return (
+                <div className="price-wrapper">
+                    <p className="price">{movie.title.length}$</p> <MdCheckCircle className="shopping-cart-button" size="2em" />
+                </div>
+            )
+        }
+    }
    
 
     return (
         <div className="container">
+
             
+
             <div className="row">
                 <div className="col">
                     <ul className="list-inline">{genreList}</ul>
                 </div>
             </div>
+
+
 
             <div className="row">
                 
@@ -124,7 +144,7 @@ const Filters = ( props) => {
 
                         <div className="price-wrapper">
                             <p className="price">{movie.title.length}$</p>
-                            <MdShoppingCart className="shopping-cart-button" size="2em" onClick={() => props.handleBuyClick(movie, movie.title.length)} />
+                            {toggleBuyButton(movie)}
                         </div>
                     </div>
                 ))}

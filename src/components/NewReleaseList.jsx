@@ -1,6 +1,6 @@
 ﻿import './listItem.css'
 import './newReleasesList.css'
-import { MdShoppingCart } from "react-icons/md"
+import { MdShoppingCart, MdCheckCircle } from "react-icons/md"
 import React, { useEffect, useState } from 'react'
 import { useHistory } from 'react-router'
 import MovieListHeading from './MovieListHeading'
@@ -35,13 +35,28 @@ const NewReleaseList = (props) => {
         findGenre();
     }, []);
 
-
+    const toggleBuyButton = (movie) => {
+        let found = props.shoppingCart.find(cartItem => cartItem.title === movie.title);
+        if (!found) {
+            return (
+                <div className="price-wrapper">
+                    <p className="price">{movie.title.length}$</p> <MdShoppingCart className="shopping-cart-button" size="2em" onClick={() => props.handleBuyClick(movie, movie.title.length)} />
+                </div>
+            )
+        } else {
+            return (
+                <div className="price-wrapper">
+                    <p className="price">{movie.title.length}$</p> <MdCheckCircle className="shopping-cart-button" size="2em" />
+                </div>
+            )
+        }
+    }
 
     return (
         <div>
             <MovieListHeading heading='New Movies' />
             <div className="row">
-                {movieList.map((movie, index) => (
+                {movieList.slice(0, 5).map((movie, index) => (
                     <div key={index} className="list-item">
                         {movie.poster_path ?
                             <img src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`} className="list-item-image" alt='movie' onClick={() => history.push({
@@ -67,11 +82,7 @@ const NewReleaseList = (props) => {
                             }
                             )}
                         </div>
-
-                        <div className="price-wrapper">
-                            <p className="price">{movie.title.length}$</p>
-                            <MdShoppingCart className="shopping-cart-button" size="2em" onClick={() => props.handleBuyClick(movie, movie.title.length)} />
-                        </div>
+                        {toggleBuyButton(movie)}
                     </div>
                 ))}
             </div>

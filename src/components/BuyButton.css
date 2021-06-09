@@ -10,6 +10,12 @@
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 }
 
+.buyButtonDisabled {
+    color: #5E42D6;
+    font-size: 18px;
+    font-weight: 600;
+}
+
 .buyButton:active {
     transform: translateY(3px);
     box-shadow: none;
