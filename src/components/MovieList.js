@@ -2,6 +2,9 @@ import React, { useState, useEffect } from 'react';
 import './listItem.css';
 import '../App.css';
 import { useHistory } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { actions as movieAction } from '../features/movieDetails';
+
 import { MdShoppingCart, MdCheckCircle } from 'react-icons/md';
 import MovieListHeading from './MovieListHeading';
 
@@ -10,6 +13,8 @@ import MovieListHeading from './MovieListHeading';
 const MovieList = (props) => {
 
 	const [genres, setGenres] = useState([]);
+
+	const dispatch = useDispatch();
 	
 	let history = useHistory();
 
@@ -45,6 +50,11 @@ const MovieList = (props) => {
         }
 	}
 
+	const goToMovieDetails = (movie) => {
+		history.push({pathname: '/MovieDetails'});
+		dispatch(movieAction.getMovieDetails(movie));
+	}
+
 	useEffect(() => {
 		findGenre();
 	}, []);
@@ -56,15 +66,9 @@ const MovieList = (props) => {
 			{props.movies.map((movie, index) => (
 				<div key={index} className="list-item">
 					{movie.poster_path ? 
-							<img src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`} className="list-item-image" alt='movie' onClick={() => history.push({
-								pathname: '/MovieDetails',
-								state: { detail: movie }
-							})}></img>
+							<img src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`} className="list-item-image" alt='movie' onClick={() => goToMovieDetails(movie)}></img>
 							: 
-							<div className="gray-box" onClick={() => history.push({
-								pathname: '/MovieDetails',
-								state: { detail: movie }
-							})}></div>
+							<div className="gray-box" onClick={() => goToMovieDetails(movie)}></div>
 							}
 							<h3 className="title">{movie.title}</h3>
 							<div className="genre-container">

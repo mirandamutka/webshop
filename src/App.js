@@ -43,14 +43,12 @@ const App = () => {
 			if (json.results) {
 				setMovies(json.results);
 			}
-			console.log('movies: ', movies);
 		} catch {
 			console.log('Failed to get data');
 		}
 		
 	};
 
-	console.log('toggle: ', toggleShoppingCart)
 	useEffect(() => {
 		getMovieRequest(searchValue);
 	}, [searchValue]);
@@ -89,7 +87,6 @@ const App = () => {
 					movies={movies}
 					handleBuyClick={addToCart}
 					shoppingCart={shoppingCart}
-					// cartItem={AddToCart}
 					/>
 					</div>
 				}

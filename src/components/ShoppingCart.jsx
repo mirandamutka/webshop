@@ -1,7 +1,6 @@
 import './ShoppingCart.css';
 import './listItem.css';
 import BuyButton from './BuyButton';
-import { useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import MovieInCart from './MovieInCart';
 import { MdShoppingCart } from 'react-icons/md';
@@ -11,8 +10,6 @@ const ShoppingCart = (props) => {
 
     let shoppingCart = useSelector(state => state.shoppingCart.product);
     let totalSum = useSelector(state => state.shoppingCart.total);
-
-    console.log('total sum: ', totalSum);
     
     if(props.toggle) {
         if (shoppingCart !== []) {
@@ -32,7 +29,7 @@ const ShoppingCart = (props) => {
                 
                 <div className={shoppingCart.length != 0 ? `shoppingCartContainer  expanded` : `shoppingCartContainer`}>
                     <MdShoppingCart className="shopping-cart-button flexEnd" size="3em" />
-                    <div className="cartItemsContainer">
+                    <div className={shoppingCart.length != 0 ? `cartItemsContainer  minimized` : `cartItemsContainer`}>
                         {shoppingList}
                     </div>
                     {shoppingList != '' ?   

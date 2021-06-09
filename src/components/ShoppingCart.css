@@ -3,12 +3,17 @@
     flex-direction: row;
     width: 15vw;
     justify-content: center;
+    min-width: 100%;
 }
 
 .cartItemsContainer {
     overflow: scroll;
     align-self: center;
     max-height: 75%;
+}
+
+.minimized {
+    min-width: 300px;
 }
 
 .cartItemsContainer::-webkit-scrollbar {
