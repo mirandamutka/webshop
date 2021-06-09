@@ -49,7 +49,7 @@ const Filters = ( props) => {
                 backPoster: posterUrl + m['backdrop_path'],
                 popularity: m['popularith'],
                 title: m['title'],
-                poster: posterUrl + m['poster_path'],
+                poster_path: posterUrl + m['poster_path'],
                 overview: m['overview'],
                 rating: m['vote_average'],
                 genre: m['genre_ids'],
@@ -127,7 +127,7 @@ const Filters = ( props) => {
                 
                 {movieByGenre.map((movie, index) => (
                     <div key={index} className="list-item">
-                        {movie.poster_path ?
+                        {!movie.poster_path ?
                             
 
                             <div className="gray-box" onClick={() => history.push({
@@ -135,7 +135,7 @@ const Filters = ( props) => {
                                 state: { detail: movie }
                             })}></div>
                             :
-                            <img src={`${movie.poster}`}
+                            <img src={`${movie.poster_path}`}
                                 className="list-item-image"
                                 alt='movie'
                                 onClick={() => history.push({

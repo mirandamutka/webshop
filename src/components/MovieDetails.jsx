@@ -147,7 +147,7 @@ const MovieDetails = (props) => {
                             )
                             }</div>
                         </section>
-                        <BuyButton text={`Buy ${moviePrice >= 100 ? moviePrice.toString().substring(0, 2) : moviePrice}$`} handleOnClick={() => addToCart(location.state.detail, moviePrice)} />
+                                {toggleBuyButton()}
                     </section>
                 </section>
             </>
