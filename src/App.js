@@ -10,6 +10,7 @@ import { actions as apiAction } from './features/apiCall';
 import { actions as cartAction } from './features/shoppingCart';
 import ShoppingCart from './components/ShoppingCart';
 import NewReleaseList from './components/NewReleaseList';
+import Filters from "./components/Filters";
 import Checkout from './components/Checkout';
 
 const App = () => {
@@ -73,16 +74,22 @@ const App = () => {
 				<ShoppingCart toggle={toggleShoppingCart} />
 			</div>
 			<div className="container" onClick={() => collapseShoppingCart()}>
-				<div>
-					<MovieListHeading heading='Movies' />
+				
+					
+
+					
+							<NewReleaseList handleBuyClick={addToCart} shoppingCart={shoppingCart} />
+							
+						
+				
 					<SearchBox searchValue={searchValue} setSearchValue={setSearchValue} />
-				</div>
+				
 				<div>
-				{searchValue === '' ? 
-					<NewReleaseList 
-						handleBuyClick={addToCart}
-						shoppingCart={shoppingCart}
-						/>	
+					{searchValue === '' ? 
+						
+							<Filters handleBuyClick={addToCart} shoppingCart={shoppingCart} />
+							
+
 					:	
 					<div className='row'>
 					<MovieList
