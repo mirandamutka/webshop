@@ -1,6 +1,6 @@
 .movieContainer {
-    display: 'flex'; 
-    flex-direction: 'row';
+    display: flex; 
+    flex-direction: row;
     width: 15vw;
     justify-content: center;
 }
@@ -9,8 +9,8 @@
     overflow: scroll;
     align-self: center;
     max-height: 75%;
-    
 }
+
 .cartItemsContainer::-webkit-scrollbar {
     display: none;
   }
@@ -21,9 +21,8 @@
     background-color: aliceblue;
     border-radius: 25px;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-    margin: 1%;
+    margin: 5px;
     padding: 20px;
-    max-height: 50vh;
 }
 
 .lineBreak {
@@ -49,9 +48,29 @@
 
 .flexEnd {
     align-self: flex-end;
+    min-height: 3em;
 }
 
 .flexCenter {
     align-items: center;
     margin: 5px;
+}
+
+.flexBetween {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+
+@media only screen and (max-width: 768px) {
+    .expanded {
+        width: 85vw;
+        align-content: center;
+    }
+    .movieContainer {
+        width: 100%;
+    }
+    .cartItemsContainer {
+        width: 100%;
+    }
 }
