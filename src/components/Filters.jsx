@@ -135,7 +135,10 @@ const Filters = ( props) => {
                                 state: { detail: movie }
                             })}></div>
                             :
-                            <img src={`${movie.poster}`} className="list-item-image" alt='movie' onClick={() => history.push({
+                            <img src={`${movie.poster}`}
+                                className="list-item-image"
+                                alt='movie'
+                                onClick={() => history.push({
                                 pathname: '/MovieDetails',
                                 state: { detail: movie }
                             })}></img>
@@ -143,7 +146,7 @@ const Filters = ( props) => {
                         <h3 className="title">{movie.title}</h3>
 
                         <div className="price-wrapper">
-                            <p className="price">{movie.title.length}$</p>
+                            
                             {toggleBuyButton(movie)}
                         </div>
                     </div>

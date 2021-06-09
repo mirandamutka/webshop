@@ -1,8 +1,15 @@
 .new-releases-headline {
     color: #5E42D6;
-    font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    
 }
 
 .new-releases-conentent {
     display: flex;
+   
+    justify-content: center;
+}
+
+.row {
+    justify-content: center;
 }

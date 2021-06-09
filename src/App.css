@@ -16,7 +16,8 @@ body {
 }
 
 .container {
-  width: 100vw;
+    width: 100vw;
+    padding-top: 2vmin;
 }
 
 .shoppingCart {
@@ -44,3 +45,10 @@ body {
         justify-content: center;
     }
 }
+
+.newReleaseList {
+    display: flex;
+    max-height: 30vmin;
+   
+}
+

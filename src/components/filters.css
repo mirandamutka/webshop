@@ -2,6 +2,7 @@
     text-align: center;
     height: 100vh;
     width: 100%;
+    justify-content: center;
 }
 
 .list-inline-item {
@@ -9,19 +10,23 @@
     display: inline-block;
     flex-direction: row;
     flex-wrap: wrap;
-    padding: 0.3em;
+    padding: 0.2vmin;
+    font-size: 5vmin;
+    justify-content: center;
 }
 
 
     .list-inline-item button {
         font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-        width: 10vw;
-        padding: 1.5vh 2.5vh;
+        width: 13vmin;
+        padding: 1.5vmin 2.5vmin;
         border: 0vh;
         border-radius: 1vh;
         background: #EAB5FF;
-        box-shadow: inset 1vh 2vh 4vh #c99cdb, inset -1vh -2vh 4vh #ffceff;
+        box-shadow: 0px 4px 4px #c99cdb, inset -1vh -2vh 4vh #ffceff;
         float: left;
+        font-size: 1.5vmin;
+        justify-content: center;
     }
 
 .firstLine {
@@ -31,10 +36,7 @@
 }
 
 
-.card {
-    display: flex;
-    flex-direction: column;
-    width: 13em;
-    margin: 0.5em;
-    padding: 1em;
+
+.list-inline-item button:hover {
+    transform: scale(1.3);
 }

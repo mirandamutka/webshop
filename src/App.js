@@ -74,16 +74,16 @@ const App = () => {
 						<ShoppingCart toggle={toggleShoppingCart} />
 					</div>
 			<div className="container" onClick={() => collapseShoppingCart()}>
-				<div>
+				
 					
 
 					
 							<NewReleaseList handleBuyClick={addToCart} shoppingCart={shoppingCart} />
 							
 						
-
+				
 					<SearchBox searchValue={searchValue} setSearchValue={setSearchValue} />
-				</div>
+				
 				<div>
 					{searchValue === '' ? 
 						
