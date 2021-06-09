@@ -27,4 +27,17 @@ body {
   position: absolute;
   top: 0;
   right: 0;
+  max-height: 14vh;
+  transition: max-height 1s;
+}
+
+.shoppingCart:hover {
+  max-height: 50vh;
+}
+
+@media only screen and (max-width: 768px) {
+  .shoppingCart {
+    max-height: 100%;
+    justify-content: center;
+  }
 }
