@@ -12,6 +12,7 @@ const MovieList = (props) => {
 	const [genres, setGenres] = useState([]);
 	
 	let history = useHistory();
+	let moviePrice = 0;
 
 	let url = 'https://api.themoviedb.org/3/genre/movie/list?api_key=7ab73473a05278044ef701c06449633a'
 
@@ -20,7 +21,7 @@ const MovieList = (props) => {
 			let response = await fetch(url);
 			let json = await response.json();	
 			if (json.genres) {
-				setGenres(json.genres);
+				setGenres(...genres, json.genres);
 			}
 		} catch {
 			console.log('Failed to get data');
@@ -63,8 +64,8 @@ const MovieList = (props) => {
 							</div>
 						
 						<div className="price-wrapper">
-							<p className="price">8$</p>
-							<MdShoppingCart className="shopping-cart-button" size="2em" onClick={() => props.handleBuyClick(movie)} />
+									<p className="price">{movie.title.length}$</p>
+									<MdShoppingCart className="shopping-cart-button" size="2em" onClick={() => props.handleBuyClick(movie, movie.title.length)} />
 						</div>
 				</div>
 			))}

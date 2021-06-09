@@ -1,0 +1,12 @@
+.receipt-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    
+}
+
+.receipt-headline {
+    text-align: center;
+    color: #5E42D6;
+    font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}

@@ -1,52 +1,75 @@
 import './checkout.css'
-import React from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { actions as cartAction } from '../features/shoppingCart';
+import React, { useState } from 'react';
 import MovieInCart from './MovieInCart';
-import RemoveFromCart from './RemoveFromCart';
 import MovieListHeading from './MovieListHeading';
+import BuyButton from './BuyButton';
+import { useHistory } from 'react-router';
+import { useSelector } from 'react-redux';
 
 const Checkout = () => {
 
     let shoppingCart = useSelector(state => state.shoppingCart.product);
+    let totalSum = useSelector(state => state.shoppingCart.total);
+    let history = useHistory();
 
-    const dispatch = useDispatch();
-	const removeFromCart = (movie) => dispatch(cartAction.removeFromCart(movie))
+    const [isSelected, setIsSelected] = useState(false)
+   
+
+    const goToReceipt = () => {
+        history.push('/Receipt')
+    }
+
+    const togglePayment = () => {
+        setIsSelected(!isSelected);
+        console.log(isSelected);
+    }
 
     const shoppingList = shoppingCart.map((movie, index) => (
         <div key={index} className="movieContainer">
-            <MovieInCart title={movie ? movie.title : ''} poster={movie ? movie.poster_path : ''}/>
-            <div onClick={() => removeFromCart(movie)} className="removeCart">
-                <RemoveFromCart />
-            </div>
+            <MovieInCart 
+                title={movie ? movie.title : ''}
+                poster={movie ? movie.poster_path : ''}
+                price={movie.title.length}
+                remove={movie}/>
         </div>
     ));
 
 
     return (
         <div className="checkout-page">
-            <h1 className="strikearound">Your Shopping Cart</h1>
+            <MovieListHeading heading="Your Shopping Cart" />
             <div className="shopping-cart">
                 {shoppingList} 
+                <div className="lineBreak" />
+                <div className="totalSumContainer">
+                    <p>Total: </p>
+                    <p>{totalSum}$</p>
+                </div>
             </div>
-            <h1 className="strikearound">Select payment method</h1>
-            <div className="paymethod">
-                <img className="payment-img" src="https://cdn0.iconfinder.com/data/icons/credit-card-debit-card-payment-PNG/128/Mastercard-Curved.png" alt=""></img> 
-                <img className="payment-img" src="https://cdn0.iconfinder.com/data/icons/credit-card-debit-card-payment-PNG/128/Discover-Curved.png" alt=""></img>
-                <img className="payment-img" src="https://cdn0.iconfinder.com/data/icons/credit-card-debit-card-payment-PNG/128/Paypal-Curved.png" alt=""></img> 
-                <img className="payment-img" src="https://cdn0.iconfinder.com/data/icons/credit-card-debit-card-payment-PNG/128/American-Express-Curved.png" alt=""></img> 
-            </div>
-            <h1 className="strikearound">Your information</h1>
-            <div className="costumer-info">
-                <form>
-                    <input type="text" placeholder="First name"></input><br/>
-                    <input type="text" placeholder="Last name"></input><br/>
-                    <input type="email" id="email" name="email" placeholder="E-mail" required></input><br/>
-                    <input type="submit" value="DSDF"></input>
-                </form>
-            </div>
-            
-
+            <MovieListHeading heading="Your Information" />
+            <form onSubmit={() => goToReceipt()}>
+                <div className="costumer-info">
+                    <input type="text" placeholder="First name" required></input>
+                    <br/>
+                    <input type="text" placeholder="Last name" required></input>
+                    <br/>
+                    <input type="email" id="email" name="email" placeholder="E-mail" required></input>
+                    <br/>
+                </div>
+                <MovieListHeading heading="Select Payment Method" />
+                <div className="paymethod">
+                    <img 
+                    className="payment-img" 
+                    className={isSelected ? "selected" : null} 
+                    src="https://cdn0.iconfinder.com/data/icons/credit-card-debit-card-payment-PNG/128/Mastercard-Curved.png" 
+                    alt="" 
+                    onClick={() => togglePayment()}></img> 
+                    <img className="payment-img" src="https://cdn0.iconfinder.com/data/icons/credit-card-debit-card-payment-PNG/128/Discover-Curved.png" alt=""></img>
+                    <img className="payment-img" src="https://cdn0.iconfinder.com/data/icons/credit-card-debit-card-payment-PNG/128/Paypal-Curved.png" alt=""></img> 
+                    <img className="payment-img" src="https://cdn0.iconfinder.com/data/icons/credit-card-debit-card-payment-PNG/128/American-Express-Curved.png" alt=""></img> 
+                </div>
+                <BuyButton type="submit" text="Buy" />
+            </form>
         </div> 
     )
 }

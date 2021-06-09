@@ -70,8 +70,8 @@ const NewReleaseList = (props) => {
                         </div>
 
                         <div className="price-wrapper">
-                            <p className="price">8$</p>
-                            <MdShoppingCart className="shopping-cart-button" size="2em" onClick={() => props.handleBuyClick(movie)} />
+                            <p className="price">{movie.title.length}$</p>
+                            <MdShoppingCart className="shopping-cart-button" size="2em" onClick={() => props.handleBuyClick(movie, movie.title.length)} />
                         </div>
                     </div>
                 ))}
