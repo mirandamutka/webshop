@@ -4,12 +4,20 @@ import BuyButton from './BuyButton';
 import { useSelector } from 'react-redux';
 import MovieInCart from './MovieInCart';
 import { MdShoppingCart } from 'react-icons/md';
+import { useHistory } from 'react-router';
 
 
 const ShoppingCart = (props) => {
 
     let shoppingCart = useSelector(state => state.shoppingCart.product);
     let totalSum = useSelector(state => state.shoppingCart.total);
+    let history = useHistory();
+
+    console.log('total sum: ', totalSum);
+
+    const goToCheckout = () => {
+        history.push('/Checkout')
+    }
     
     if(props.toggle) {
         if (shoppingCart !== []) {
@@ -39,7 +47,7 @@ const ShoppingCart = (props) => {
                         <p>Total: </p>
                         <p>{totalSum}$</p>
                         </div>
-                            <BuyButton text={"Buy"} />
+                            <BuyButton text={"Buy"} handleOnClick={() => goToCheckout()} />
                         </div>
                     : <div className="buyButtonShoppingCart"></div>}
                 </div> 

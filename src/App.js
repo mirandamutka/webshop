@@ -48,8 +48,6 @@ const App = () => {
 		 }	
 	};
 
-	console.log('url: ', url);
-
 	useEffect(() => {		
 		setUrl(`https://api.themoviedb.org/3/search/movie?api_key=7ab73473a05278044ef701c06449633a&query=${searchValue}`)
 		getMovieRequest();

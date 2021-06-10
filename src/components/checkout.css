@@ -1,0 +1,38 @@
+.checkout-page {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.checkout-page .shopping-cart {
+    border: black solid 1px;
+    border-radius: 15px;
+    padding: 15px;
+    width: 300px;
+}
+
+.checkout-page .payment-img {
+    width: 75px;
+}
+
+.checkout-page .costumer-info {
+    border: black solid 1px;
+    border-radius: 15px;
+    padding: 15px;
+    margin-bottom: 10px;
+    width: 300px;
+}
+
+.payment-img {
+    width: 75px;
+}
+
+.payment-button {
+    border: 0vh;
+    padding: 0px;
+    margin: 3px
+}
+
+.payment-button:hover {
+    transform: scale(1.3);
+}
