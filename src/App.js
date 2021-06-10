@@ -17,6 +17,7 @@ const App = () => {
 	const [movies, setMovies] = useState([]);
 	const [searchValue, setSearchValue] = useState('');
 	const [toggleShoppingCart, setToggleShoppingCart] = useState(false);
+	const [genreActive, setGenreActive] = useState(false);
 
 	const dispatch = useDispatch();
 
@@ -71,11 +72,7 @@ const App = () => {
 			<div className="shoppingCart" onClick={() => expandShoppingCart()}>
 				<ShoppingCart toggle={toggleShoppingCart} />
 			</div>
-			<div className="container" onClick={() => collapseShoppingCart()}>
-				<NewReleaseList 
-					handleBuyClick={addToCart} 
-					shoppingCart={shoppingCart} 
-				/>
+			<div className="container" onClick={() => collapseShoppingCart()}>				
 				<SearchBox 
 					searchValue={searchValue} 
 					setSearchValue={setSearchValue} 
@@ -85,16 +82,24 @@ const App = () => {
 					<Filters 
 						handleBuyClick={addToCart} 
 						shoppingCart={shoppingCart} 
+						setGenreActive={setGenreActive}
+						genreActive={genreActive}
 					/>
 					:	
-					<div className='row'>
 						<MovieList
 							movies={movies}
 							handleBuyClick={addToCart}
 							shoppingCart={shoppingCart}
 						/>
-					</div>
 					}	
+					{!genreActive && searchValue === '' ?
+					<NewReleaseList 
+						handleBuyClick={addToCart} 
+						shoppingCart={shoppingCart} 
+					/>					
+					:
+					<div />	
+					}
 				</div>
 			</div>
 		</div>

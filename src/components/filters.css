@@ -5,11 +5,19 @@
     justify-content: center;
 }
 
+.col {
+    width: 75vw;
+    border-radius: 1vh;
+    margin-bottom: 1%;
+    background: #EAB5FF;
+    box-shadow: 0px 4px 4px #c99cdb, inset -1vh -2vh 4vh #ffceff;
+}
+
 .list-inline {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    width: 80vw;
+    width: 100%;
     margin: 0;
     padding: 0;
 }
@@ -17,25 +25,43 @@
 .list-inline-item {
     text-align: center;
     display: inline-block;
-    flex-direction: row;
-    flex-wrap: wrap;
+    flex-direction: column;
+    width: 50vw;
     padding: 0.2vmin;
     font-size: 5vmin;
     justify-content: center;
 }
 
+.list-item-header {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    margin: 0;
+    padding: 0;
+}
+
+.list-item-header-title {
+    flex-grow: 2;
+    justify-content: center;
+    margin-left: 3vmin;
+}
+
+.list-item-header-arrow {
+    justify-content: flex-end;
+    margin-right: 2vmin;
+}
+
     .list-inline-item button {
+        display: flex;
         font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
         padding: 1.5vmin 2.5vmin;
         border: 0vh;
-        border-radius: 1vh;
-        background: #EAB5FF;
-        box-shadow: 0px 4px 4px #c99cdb, inset -1vh -2vh 4vh #ffceff;
+        background: transparent;
         float: left;
-        font-size: small;
+        font-size: medium;
         justify-content: center;
+        width: 100%;
         transition: transform 0.5s;
-        margin: 1vmin;
     }
 
     .list-inline-item button:hover {
