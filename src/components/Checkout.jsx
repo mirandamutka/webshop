@@ -69,7 +69,7 @@ const Checkout = () => {
                 <button className="payment-button" onClick={() => handlePayment("paypal")}>
                     <img 
                     className="payment-img" 
-                    src="https://cdn0.iconfinder.com/data/icons/credit-card-debit-card-payment-PNG/128/Paypal-Curved.png" 
+                    src="https://icons8.com/iconizer/files/Credit_card,_debit_card/orig/paypal-curved.png" 
                     alt="" />
                 </button>
                 <button className="payment-button" onClick={() => handlePayment("amex")}>

@@ -30,7 +30,8 @@
 .payment-button {
     border: 0vh;
     padding: 0px;
-    margin: 3px
+    margin: 3px;
+    transition: transform .5s;
 }
 
 .payment-button:hover {

@@ -21,6 +21,7 @@ const Filters = (props) => {
     const [movieByGenre, setMovieByGenre] = useState([]);
     const [displayGenreList, setDisplayGenreList] = useState(false);
     const [page, setPage] = useState(1);
+    const [headLine, setHeadLine] = useState('');
     
     console.log('page: ', page)
 
@@ -93,6 +94,7 @@ const Filters = (props) => {
 
                     onClick={() => {
                         handleGenreClick(movie.id);
+                        setHeadLine(movie.name);
                     }}
                 >
                     {movie.name}
@@ -131,7 +133,10 @@ const Filters = (props) => {
     return (
         <div className="container">
             <div className="row">
-                <div className="col" onClick={() => toggleGenreList()}><div className="list-item-header"><p className="list-item-header-title">Genre</p><p className="list-item-header-arrow">▼</p></div>
+                <div className="col" onClick={() => toggleGenreList()}><div className="list-item-header">
+                    {headLine != '' ?
+                    <p className="list-item-header-title">{headLine}</p> :  <p className="list-item-header-title">Genre</p>}
+                    <p className="list-item-header-arrow">▼</p></div>
                 {displayGenreList ?
                  <ul className="list-inline">{genreList}</ul>
                 : null

@@ -64,7 +64,7 @@ const NewReleaseList = (props) => {
         <div>
             <MovieListHeading heading='New Releases' />
             <div className="row">
-                {movieList.slice(0, 4).map((movie, index) => (
+                {movieList.slice(0, 8).map((movie, index) => (
                     <div key={index} className="list-item">
                         {movie.poster_path ?
                             <img src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`} className="list-item-image" alt='movie' onClick={() => goToMovieDetails(movie)}></img>
