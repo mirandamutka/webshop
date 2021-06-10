@@ -8,7 +8,7 @@
     border: black solid 1px;
     border-radius: 15px;
     padding: 15px;
-    width: 300px;
+    min-width: 300px;
 }
 
 .checkout-page .payment-img {

@@ -18,7 +18,9 @@ const Checkout = () => {
     const goToReceipt = (event) => {
         console.log("namn:", name);
         if(payment != "") {
-            history.push('/Receipt')
+            if(shoppingCart.length != 0) {
+                history.push('/Receipt')
+          }
         }
         event.preventDefault();
     }
