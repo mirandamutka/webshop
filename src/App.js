@@ -53,7 +53,7 @@ const App = () => {
 
 	console.log('toggle: ', toggleShoppingCart)
 	useEffect(() => {
-		getMovieRequest(searchValue);
+	  getMovieRequest(searchValue);
 	}, [searchValue]);
 
 	const collapseShoppingCart = () => {
@@ -71,8 +71,8 @@ const App = () => {
 	return (
 		<div>
 			<div className="shoppingCart" onClick={() => expandShoppingCart()}>
-						<ShoppingCart toggle={toggleShoppingCart} />
-					</div>
+				<ShoppingCart toggle={toggleShoppingCart} />
+			</div>
 			<div className="container" onClick={() => collapseShoppingCart()}>
 				
 					
@@ -100,9 +100,9 @@ const App = () => {
 					/>
 					</div>
 				}
-				</div>
-			</div>
-		</div>
+			  </div>
+		  </div>
+	  </div>
 	);
 };
 
