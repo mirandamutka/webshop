@@ -7,6 +7,7 @@ import { actions as movieAction } from '../features/movieDetails';
 
 import { MdShoppingCart, MdCheckCircle } from 'react-icons/md';
 import MovieListHeading from './MovieListHeading';
+import Pagination from './Pagination';
 
 
 
@@ -86,6 +87,10 @@ const MovieList = (props) => {
 							{toggleBuyButton(movie)}
 				</div>
 			))}
+			<Pagination
+				page={props.page}
+				setPage={props.setPage}
+			/>
 		</div>
 		</div>
 	);

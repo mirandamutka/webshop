@@ -1,5 +1,7 @@
-const Pagination = (props) => {
+import './pagination.css';
 
+const Pagination = (props) => {
+    
     const pagePrevious = () => {
         if(props.page > 1) {
             props.setPage(props.page - 1)
@@ -9,14 +11,14 @@ const Pagination = (props) => {
     }
 
     const pageNext = () => {
-        props.setPage(props.page + 1)
+            props.setPage(props.page + 1)
     }
 
 
     return (
-        <div>
-            <button onClick={() => pagePrevious()}>Previous</button>
-            <button onClick={() => pageNext()}>Next</button>
+        <div className="pagination-container">
+            <button className="page-button" onClick={() => pagePrevious()}>◄ Previous</button>
+            <button className="page-button" onClick={() => pageNext()}>Next ►</button>
         </div>
     )
 }
