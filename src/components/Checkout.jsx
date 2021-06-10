@@ -12,18 +12,22 @@ const Checkout = () => {
     let totalSum = useSelector(state => state.shoppingCart.total);
     let history = useHistory();
 
-    const [isSelected, setIsSelected] = useState(false)
-   
+    const [payment, setPayment] = useState("")
+    const [name, setName] = useState("")
 
-    const goToReceipt = () => {
-        history.push('/Receipt')
+    const goToReceipt = (event) => {
+        console.log("namn:", name);
+        if(payment != "") {
+            history.push('/Receipt')
+        }
+        event.preventDefault();
     }
 
-    const togglePayment = () => {
-        setIsSelected(!isSelected);
-        console.log(isSelected);
+    const handlePayment = (selected) => {
+        setPayment(selected);
     }
 
+    
     const shoppingList = shoppingCart.map((movie, index) => (
         <div key={index} className="movieContainer">
             <MovieInCart 
@@ -46,28 +50,44 @@ const Checkout = () => {
                     <p>{totalSum}$</p>
                 </div>
             </div>
+            <MovieListHeading heading="Select Payment Method" />
+            <div className="paymethod">
+                <button className="payment-button" onClick={() => handlePayment("mastercard")}>
+                    <img
+                    className="payment-img"
+                    src="https://cdn0.iconfinder.com/data/icons/credit-card-debit-card-payment-PNG/128/Mastercard-Curved.png" 
+                    alt="" />
+                </button>
+                <button className="payment-button" onClick={() => handlePayment("discover")}>
+                    <img 
+                    className="payment-img" 
+                    src="https://cdn0.iconfinder.com/data/icons/credit-card-debit-card-payment-PNG/128/Discover-Curved.png" 
+                    alt="" />
+                </button>
+                <button className="payment-button" onClick={() => handlePayment("paypal")}>
+                    <img 
+                    className="payment-img" 
+                    src="https://cdn0.iconfinder.com/data/icons/credit-card-debit-card-payment-PNG/128/Paypal-Curved.png" 
+                    alt="" />
+                </button>
+                <button className="payment-button" onClick={() => handlePayment("amex")}>
+                    <img 
+                    className="payment-img" 
+                    src="https://cdn0.iconfinder.com/data/icons/credit-card-debit-card-payment-PNG/128/American-Express-Curved.png" 
+                    alt="" /> 
+                </button>
+            </div>
             <MovieListHeading heading="Your Information" />
-            <form onSubmit={() => goToReceipt()}>
+            <form onSubmit={goToReceipt}>
                 <div className="costumer-info">
-                    <input type="text" placeholder="First name" required></input>
+                    <input type="text" placeholder="First name" value={name} onChange={(event) =>{ console.log("onchage", name); setName(event.target.value)}} required></input>
                     <br/>
                     <input type="text" placeholder="Last name" required></input>
                     <br/>
                     <input type="email" id="email" name="email" placeholder="E-mail" required></input>
                     <br/>
                 </div>
-                <MovieListHeading heading="Select Payment Method" />
-                <div className="paymethod">
-                    <img 
-                    className="payment-img" 
-                    className={isSelected ? "selected" : null} 
-                    src="https://cdn0.iconfinder.com/data/icons/credit-card-debit-card-payment-PNG/128/Mastercard-Curved.png" 
-                    alt="" 
-                    onClick={() => togglePayment()}></img> 
-                    <img className="payment-img" src="https://cdn0.iconfinder.com/data/icons/credit-card-debit-card-payment-PNG/128/Discover-Curved.png" alt=""></img>
-                    <img className="payment-img" src="https://cdn0.iconfinder.com/data/icons/credit-card-debit-card-payment-PNG/128/Paypal-Curved.png" alt=""></img> 
-                    <img className="payment-img" src="https://cdn0.iconfinder.com/data/icons/credit-card-debit-card-payment-PNG/128/American-Express-Curved.png" alt=""></img> 
-                </div>
+                
                 <BuyButton type="submit" text="Buy" />
             </form>
         </div> 
