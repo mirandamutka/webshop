@@ -2,14 +2,20 @@ import React, { useState, useEffect } from 'react';
 import './listItem.css';
 import '../App.css';
 import { useHistory } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { actions as movieAction } from '../features/movieDetails';
+
 import { MdShoppingCart, MdCheckCircle } from 'react-icons/md';
 import MovieListHeading from './MovieListHeading';
+import Pagination from './Pagination';
 
 
 
 const MovieList = (props) => {
 
 	const [genres, setGenres] = useState([]);
+
+	const dispatch = useDispatch();
 	
 	let history = useHistory();
 
@@ -33,16 +39,21 @@ const MovieList = (props) => {
 		if (!found) {
             return (
                 <div className="price-wrapper">
-                    <p className="price">{movie.title.length}$</p> <MdShoppingCart className="shopping-cart-button" size="2em" onClick={() => props.handleBuyClick(movie, movie.title.length)} />
+                    <p className="price">{movie.title.length}$</p> <MdShoppingCart className="shopping-cart-button small-display" size="2em" onClick={() => props.handleBuyClick(movie, movie.title.length)} />
                 </div>
             )
         } else {
             return (
                 <div className="price-wrapper">
-                    <p className="price">{movie.title.length}$</p> <MdCheckCircle className="shopping-cart-button" size="2em" />
+                    <p className="price">{movie.title.length}$</p> <MdCheckCircle className="shopping-cart-button small-display" size="2em" />
                 </div>
             )
         }
+	}
+
+	const goToMovieDetails = (movie) => {
+		history.push({pathname: '/MovieDetails'});
+		dispatch(movieAction.getMovieDetails(movie));
 	}
 
 	useEffect(() => {
@@ -56,18 +67,9 @@ const MovieList = (props) => {
 			{props.movies.map((movie, index) => (
 				<div key={index} className="list-item">
 					{movie.poster_path ? 
-						<img src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`}
-							className="list-item-image"
-							alt='movie'
-							onClick={() => history.push({
-								pathname: '/MovieDetails',
-								state: { detail: movie }
-							})}></img>
+							<img src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`} className="list-item-image" alt='movie' onClick={() => goToMovieDetails(movie)}></img>
 							: 
-							<div className="gray-box" onClick={() => history.push({
-								pathname: '/MovieDetails',
-								state: { detail: movie }
-							})}></div>
+							<div className="gray-box" onClick={() => goToMovieDetails(movie)}></div>
 							}
 							<h3 className="title">{movie.title}</h3>
 							<div className="genre-container">
@@ -85,6 +87,10 @@ const MovieList = (props) => {
 							{toggleBuyButton(movie)}
 				</div>
 			))}
+			<Pagination
+				page={props.page}
+				setPage={props.setPage}
+			/>
 		</div>
 		</div>
 	);

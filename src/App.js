@@ -4,9 +4,8 @@ import './App.css';
 import MovieList from './components/MovieList';
 import MovieListHeading from './components/MovieListHeading';
 import SearchBox from './components/SearchBox';
-
+import axios from 'axios';
 import { useDispatch, useSelector } from 'react-redux';
-import { actions as apiAction } from './features/apiCall';
 import { actions as cartAction } from './features/shoppingCart';
 import ShoppingCart from './components/ShoppingCart';
 import NewReleaseList from './components/NewReleaseList';
@@ -17,6 +16,9 @@ const App = () => {
 	const [movies, setMovies] = useState([]);
 	const [searchValue, setSearchValue] = useState('');
 	const [toggleShoppingCart, setToggleShoppingCart] = useState(false);
+	const [genreActive, setGenreActive] = useState(false);
+	const [page, setPage] = useState(1);
+	const [url, setUrl] = useState();
 
 	const dispatch = useDispatch();
 
@@ -29,32 +31,27 @@ const App = () => {
 			dispatch(cartAction.addToTotalSum(price));
 		} else {
 			console.log('Product already added');
-		}
-		
+		}	
 	}
-	if (searchValue !== '') {
-		dispatch(apiAction.getDataFromSearch(searchValue));
-	}
-	let url = useSelector(state => state.apiCall.url);
 
 	const getMovieRequest = async () => {
 		try {
-			let response = await fetch(url);
-			let json = await response.json();	
-			if (json.results) {
-				setMovies(json.results);
-			}
-			console.log('movies: ', movies);
-		} catch {
-			console.log('Failed to get data');
-		}
-		
+            const { data } = await axios.get(url, {
+                params: {
+					query: searchValue,
+                    page: page
+                }
+            })
+            return setMovies(data.results);
+        } catch (error) {
+			console.log('Failed to get data: ', error);
+		 }	
 	};
 
-	console.log('toggle: ', toggleShoppingCart)
-	useEffect(() => {
-	  getMovieRequest(searchValue);
-	}, [searchValue]);
+	useEffect(() => {		
+		setUrl(`https://api.themoviedb.org/3/search/movie?api_key=7ab73473a05278044ef701c06449633a&query=${searchValue}`)
+		getMovieRequest();
+	}, [searchValue, page]);
 
 	const collapseShoppingCart = () => {
 		if (toggleShoppingCart) {
@@ -69,40 +66,43 @@ const App = () => {
 	}
 
 	return (
-		<div>
+		<div className="App">
 			<div className="shoppingCart" onClick={() => expandShoppingCart()}>
 				<ShoppingCart toggle={toggleShoppingCart} />
 			</div>
-			<div className="container" onClick={() => collapseShoppingCart()}>
-				
-					
-
-					
-							<NewReleaseList handleBuyClick={addToCart} shoppingCart={shoppingCart} />
-							
-						
-				
-					<SearchBox searchValue={searchValue} setSearchValue={setSearchValue} />
-				
+			<div className="container" onClick={() => collapseShoppingCart()}>				
+				<SearchBox 
+					searchValue={searchValue} 
+					setSearchValue={setSearchValue} 
+				/>				
 				<div>
-					{searchValue === '' ? 
-						
-							<Filters handleBuyClick={addToCart} shoppingCart={shoppingCart} />
-							
-
-					:	
-					<div className='row'>
-					<MovieList
-					movies={movies}
-					handleBuyClick={addToCart}
-					shoppingCart={shoppingCart}
-					// cartItem={AddToCart}
+					{searchValue === '' ? 	
+					<Filters 
+						handleBuyClick={addToCart} 
+						shoppingCart={shoppingCart} 
+						setGenreActive={setGenreActive}
+						genreActive={genreActive}
 					/>
-					</div>
-				}
-			  </div>
-		  </div>
-	  </div>
+					:	
+						<MovieList
+							movies={movies}
+							page={page}
+							setPage={setPage}
+							handleBuyClick={addToCart}
+							shoppingCart={shoppingCart}
+						/>
+					}	
+					{!genreActive && searchValue === '' ?
+					<NewReleaseList 
+						handleBuyClick={addToCart} 
+						shoppingCart={shoppingCart} 
+					/>					
+					:
+					<div />	
+					}
+				</div>
+			</div>
+		</div>
 	);
 };
 

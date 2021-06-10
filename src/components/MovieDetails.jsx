@@ -18,22 +18,20 @@ const MovieDetails = (props) => {
     const [movieRating, setMovieRating] = useState();
     const [movieGenre, setMovieGenre] = useState([]);
     const [moviePlot, setMoviePlot] = useState();
-    const [movieDirector, setMovieDirector] = useState();
-    const [movieActors, setMovieActors] = useState();
     const [movieLanguage, setMovieLanguage] = useState([]);
     const [movieCountry, setMovieCountry] = useState([]);
     const [moviePrice, setMoviePrice] = useState();
     const [addedToCart, setAddedToCart] = useState(false);
 
-    useEffect(() => {
-        setMovieID(location.state.detail.id);
-     }, [location]);
-
-     const dispatch = useDispatch();
+    const dispatch = useDispatch();
      
     let url = useSelector(state => state.apiCall.url);
-
     let shoppingCart = useSelector(state => state.shoppingCart.product);
+    let movie = useSelector(state => state.movieDetails.movie);
+
+    useEffect(() => {
+        setMovieID(movie.id);
+     }, []);
 
     if (movieID != null) {
         dispatch(apiAction.getDataFromId(movieID));
@@ -56,7 +54,7 @@ const MovieDetails = (props) => {
                 let response = await fetch(url);
                 let data = await response.json();	
                 console.log('data: ', data)	
-                if (data != null) {
+                if (movie != null) {
                     setMovieName(data.title);
                     setMoviePoster(data.poster_path);
                     setMovieRating(data.vote_average);
@@ -65,8 +63,6 @@ const MovieDetails = (props) => {
                         data.genres
                         );
                     setMoviePlot(data.overview);
-                    setMovieDirector(data.Director);
-                    setMovieActors(data.Actors);
                     setMovieLanguage(
                         ...movieLanguage,
                         data.spoken_languages
@@ -84,7 +80,6 @@ const MovieDetails = (props) => {
     }
 
     let history = useHistory();
-    console.log('Price: ', moviePrice)
 
     const handleCloseWindow = () => {
         history.push('/')
@@ -104,7 +99,7 @@ const MovieDetails = (props) => {
     }
 
     const handleBuyButton = () => {
-        addToCart(location.state.detail, moviePrice);
+        addToCart(movie, moviePrice);
     }
 
     return (
@@ -114,34 +109,39 @@ const MovieDetails = (props) => {
             ? (
             <>
                 <section className="imgBox">
-                    <img src={`https://image.tmdb.org/t/p/w500/${moviePoster}`} className="moviePoster" alt="" />
+                    {moviePoster != null ?
+                     <img src={`https://image.tmdb.org/t/p/w500/${moviePoster}`} className="moviePoster" alt="" />
+                    : 
+                    <div className="gray-box" />
+                    }
+                   
                 </section>
                 <section className="infoBox">
                     <section className="topInfo">
                         <h3>{movieName}</h3>
                         <section className="ratingGenre">
                             <div className="movieRating">{movieRating}</div> | 
-                                {movieGenre.map((genre, index) => (
-                                    <div className="movieGenre" key={index}>
-                                        {genre.name}
-                                    </div>
-                                ))}
+                                <div className="genreContainer">
+                                    {movieGenre.map((genre, index) => (
+                                        <div className="movieGenre" key={index}>
+                                            {genre.name}
+                                        </div>
+                                    ))}
+                                </div>
                             
                         </section>
                         <div className="moviePlot">
                             {moviePlot}
                         </div>
-                        <div className="directorName">Director <b>{movieDirector}</b></div>
-                        <div className="actorsList">Actors <b>{movieActors}</b></div>
                     </section>
                     <section className="bottomInfo">
                         <section className="languageCountry">
-                            <div className="movieLanguage">Language 
+                            <div>Language 
                             {movieLanguage.map((language, index) => 
                                 <b key={index}> {language.english_name}</b>
                             )
                             }</div>
-                            <div className="movieCountry">Country 
+                            <div>Country 
                             {movieCountry.map((country, index) => 
                                 <b key={index}> {country.name}</b>
                             )

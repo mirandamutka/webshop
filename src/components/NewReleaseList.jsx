@@ -1,18 +1,21 @@
-﻿import './listItem.css'
-import './newReleasesList.css'
-import { MdShoppingCart, MdCheckCircle } from "react-icons/md"
-import React, { useEffect, useState } from 'react'
-import { useHistory } from 'react-router'
-import MovieListHeading from './MovieListHeading'
+import './listItem.css';
+import './newReleasesList.css';
+import { MdShoppingCart, MdCheckCircle } from 'react-icons/md';
+import React, { useEffect, useState } from 'react';
+import { useHistory } from 'react-router';
+import { useDispatch } from 'react-redux';
+import { actions as movieAction } from '../features/movieDetails';
+import MovieListHeading from './MovieListHeading';
 
 const NewReleaseList = (props) => {
 
     const [movieList, setMovieList] = useState([]);
     const [genres, setGenres] = useState([]);
 
-    let history = useHistory();
+    const dispatch = useDispatch();
 
-    let url = 'https://api.themoviedb.org/3/genre/movie/list?api_key=7ab73473a05278044ef701c06449633a'
+    let history = useHistory();
+    let url = 'https://api.themoviedb.org/3/genre/movie/list?api_key=7ab73473a05278044ef701c06449633a';
 
     const findGenre = async () => {
         try {
@@ -26,6 +29,11 @@ const NewReleaseList = (props) => {
         }
 
     };
+
+    const goToMovieDetails = (movie) => {
+		history.push({pathname: '/MovieDetails'});
+		dispatch(movieAction.getMovieDetails(movie));
+	}
 
     useEffect(() => {
         fetch('https://api.themoviedb.org/3/trending/movie/week?api_key=7ab73473a05278044ef701c06449633a')
@@ -53,20 +61,15 @@ const NewReleaseList = (props) => {
 }
 
     return (
-        
+        <div>
+            <MovieListHeading heading='New Releases' />
             <div className="row">
-                {movieList.slice(0, 5).map((movie, index) => (
+                {movieList.slice(0, 4).map((movie, index) => (
                     <div key={index} className="list-item">
                         {movie.poster_path ?
-                            <img src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`} className="list-item-image" alt='movie' onClick={() => history.push({
-                                pathname: '/MovieDetails',
-                                state: { detail: movie }
-                            })}></img>
+                            <img src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`} className="list-item-image" alt='movie' onClick={() => goToMovieDetails(movie)}></img>
                             :
-                            <div className="gray-box" onClick={() => history.push({
-                                pathname: '/MovieDetails',
-                                state: { detail: movie }
-                            })}></div>
+                            <div className="gray-box" onClick={() => goToMovieDetails(movie)}></div>
                         }
                         <h3 className="title">{movie.title}</h3>
                         <div className="genre-container">
@@ -85,7 +88,7 @@ const NewReleaseList = (props) => {
                     </div>
                 ))}
             </div>
-        
+        </div>
     );
 }
 

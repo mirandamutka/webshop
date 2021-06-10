@@ -1,6 +1,7 @@
 .SearchBox {
     text-align: center;
     color: black;
+    margin-top: 5%;
 }
 
     .SearchBox input[type=search] {

@@ -1,7 +1,6 @@
 import './ShoppingCart.css';
 import './listItem.css';
 import BuyButton from './BuyButton';
-import { useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import MovieInCart from './MovieInCart';
 import { MdShoppingCart } from 'react-icons/md';
@@ -37,8 +36,8 @@ const ShoppingCart = (props) => {
             return (
                 
                 <div className={shoppingCart.length != 0 ? `shoppingCartContainer  expanded` : `shoppingCartContainer`}>
-                    <MdShoppingCart className="shopping-cart-button flexEnd" size="3em" />
-                    <div className="cartItemsContainer">
+                    <MdShoppingCart className="flexEnd" size="3em" />
+                    <div className={shoppingCart.length != 0 ? `cartItemsContainer  minimized` : `cartItemsContainer`}>
                         {shoppingList}
                     </div>
                     {shoppingList != '' ?   
@@ -63,8 +62,8 @@ const ShoppingCart = (props) => {
     } else {
         return (
             <div className="shoppingCartContainer flexCenter">
-                    <MdShoppingCart className="shopping-cart-button" size="3em" />
-                {shoppingCart.length > 0 ? <div className="row flexBetween"><p>{totalSum}$</p> <p className="cartItemAmount">({shoppingCart.length})</p></div> : ""}
+                    <MdShoppingCart className="flexEnd" size="3em" />
+                {shoppingCart.length > 0 ? <div className="row flexBetween"><p className="cartItemAmount">{shoppingCart.length}</p></div> : ""}
             </div>
         )
     }

@@ -18,42 +18,16 @@ const MovieInCart = (props) => {
         dispatch(cartAction.removeFromCart(movie));
         dispatch(cartAction.removeFromTotalSum(price));
     }
-   /* useEffect(() => {
-        if(props.price >= 100) {
-            price = props.price.toString().substring(0, 2);
-            parseInt(price);
-        }
-        dispatch(cartAction.addToTotalSum(price));
-    }, []);
-    */
-   /* useEffect(() => {
-        if(props.price >= 100) {
-            price = props.price.toString().substring(0, 2);
-            parseInt(price);
-        }
-        dispatch(cartAction.addToTotalSum(price));
-    }, []);
-    */
-   /* useEffect(() => {
-        if(props.price >= 100) {
-            price = props.price.toString().substring(0, 2);
-            parseInt(price);
-        }
-        dispatch(cartAction.addToTotalSum(price));
-    }, []);
-    */
 
     return (
         <div className="cartItemContainer">
-            <div className="row">
             <img src={`https://image.tmdb.org/t/p/w500/${props.poster}`} className="cartItemPoster" alt="" />
             <p className="cartItemTitle">{props.title}</p>
-            </div>
-            <div className="row rightRow">
-            <p className="cartItemPrice">{price}$</p>
-            <div onClick={() => removeFromCart(props.remove)}>
-                <RemoveFromCart />
-            </div>
+            <div className="rightRow">
+                <p className="cartItemPrice">{price}$</p>
+                <div onClick={() => removeFromCart(props.remove)}>
+                    <RemoveFromCart />
+                </div>
             </div>
         </div>
     )

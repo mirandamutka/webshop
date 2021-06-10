@@ -3,7 +3,7 @@
     flex-direction: row;
     justify-content: center;
     align-items: center;
-    background-color: #FFF4FF; /* All hexkod för färger kan flyttas till separat komponent för att återanvändas */
+    background-color: #FFF4FF;
     height: 100vh;
     width: 100%;
 }
@@ -26,6 +26,12 @@
     height: 50vh;
 }
 
+.gray-box {
+    width: 30vmin;
+    height: 50vh;
+    background-color: gray;
+}
+
 .infoBox {
     display: flex;
     flex-direction: column;
@@ -39,7 +45,7 @@
 .topInfo h3 {
     color: #5E42D6;
     text-transform: uppercase;
-    font-size: 48px;
+    font-size: xx-large;
     padding: 0;
     margin: 0;
 }
@@ -47,7 +53,7 @@
 .ratingGenre {
     color: #B0B0B0;
     font-weight: bold;
-    font-size: 18px;
+    font-size: medium;
     display: flex;
     flex-direction: row;
     justify-content: space-around;
@@ -57,7 +63,12 @@
 .movieRating {
     color: #9D80DE;
     margin: 2px;
-    font-size: 18px;
+    font-size: medium;
+}
+
+.genreContainer {
+    display: flex;
+    flex-direction: row;
 }
 
 .movieGenre {
@@ -66,14 +77,9 @@
     flex-wrap: wrap;
 }
 
-.starRating {
-    color: #9E8EE6;
-    font-size: 20px;
-}
-
 .moviePlot {
     padding: 1% 0;
-    font-size: 20px;
+    font-size: large;
 }
 
 .bottomInfo {
@@ -98,12 +104,24 @@
         justify-content: space-between;
         background-color: #FFF4FF; 
         height: max-content;
+        max-width: 100%;
         width: 100%;
+    }
+
+    .topInfo h3 {
+        font-size: large;
     }
 
     .imgBox {
         background-color: #FFF4FF; 
         height: 100%;
+    }
+
+    .gray-box {
+        width: 100vw;
+        height: 50vh;
+        background-color: gray;
+        mask-image: linear-gradient(to bottom, #FFF4FF 20%, transparent 100%);
     }
 
     .moviePoster {
@@ -114,36 +132,54 @@
         position: absolute;
         top: 0;
         left: 0;
+        overflow: hidden;
     }
 
     .infoBox {
-        z-index: 1000;
-        width: 90%;
-        height: 50%;
+        display: flex;
+        z-index: 100;
+        width: 95%;
+        height: max-content;
         position: absolute;
         bottom: 0;
+        margin: 0; 
+        padding: 0;
+    }
+
+    .ratingGenre {
+        width: 95vw;
+        flex-wrap: wrap;
+    }
+
+    .genreContainer {
+        width: 70%;
+        flex-wrap: wrap;
     }
 
     .movieGenre {
-        max-width: 250px;
-        font-size: 14px;
+        width: max-content;
+        font-size: small;
+        align-self: center;
+ 
     }
 
     .moviePlot {
-        font-size: large;
+        font-size: medium;
+        height: 150px;
+        overflow: scroll;
     }
 
-    .directorName {
-        font-size: small;
-        padding: 1% 0;
-    }
-
-    .actorsList {
-        font-size: small;
-    }
+    .moviePlot::-webkit-scrollbar {
+        display: none;
+      }
 
     .bottomInfo {
         padding: 5% 0;
+    }
+
+    .languageCountry {
+        font-size: small;
+        max-width: 75%;
     }
 
   }
