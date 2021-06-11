@@ -16,7 +16,6 @@ const Checkout = () => {
     const [name, setName] = useState("")
 
     const goToReceipt = (event) => {
-        console.log("namn:", name);
         if(payment != "") {
             if(shoppingCart.length != 0) {
                 history.push('/Receipt')
@@ -82,7 +81,7 @@ const Checkout = () => {
             <MovieListHeading heading="Your Information" />
             <form onSubmit={goToReceipt}>
                 <div className="costumer-info">
-                    <input type="text" placeholder="First name" value={name} onChange={(event) =>{ console.log("onchage", name); setName(event.target.value)}} required></input>
+                    <input type="text" placeholder="First name" value={name} onChange={(event) =>{setName(event.target.value)}} required></input>
                     <br/>
                     <input type="text" placeholder="Last name" required></input>
                     <br/>

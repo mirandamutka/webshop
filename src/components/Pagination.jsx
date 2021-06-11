@@ -5,8 +5,6 @@ const Pagination = (props) => {
     const pagePrevious = () => {
         if(props.page > 1) {
             props.setPage(props.page - 1)
-        } else {
-            console.log('Page previous')
         }
     }
 

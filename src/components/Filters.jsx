@@ -22,8 +22,6 @@ const Filters = (props) => {
     const [displayGenreList, setDisplayGenreList] = useState(false);
     const [page, setPage] = useState(1);
     const [headLine, setHeadLine] = useState('');
-    
-    console.log('page: ', page)
 
     const fetchGenre = async () => {
         try {

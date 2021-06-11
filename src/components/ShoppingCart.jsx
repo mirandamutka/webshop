@@ -13,8 +13,6 @@ const ShoppingCart = (props) => {
     let totalSum = useSelector(state => state.shoppingCart.total);
     let history = useHistory();
 
-    console.log('total sum: ', totalSum);
-
     const goToCheckout = () => {
         history.push('/Checkout')
     }

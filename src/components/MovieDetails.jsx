@@ -52,8 +52,7 @@ const MovieDetails = (props) => {
         if (movieID) {
             try {
                 let response = await fetch(url);
-                let data = await response.json();	
-                console.log('data: ', data)	
+                let data = await response.json();
                 if (movie != null) {
                     setMovieName(data.title);
                     setMoviePoster(data.poster_path);
